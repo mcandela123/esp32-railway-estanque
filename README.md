@@ -2,6 +2,8 @@
 
 Proyecto TEI201, adaptado de la guía *ESP32 conectado a una base de datos en la nube*.
 
+**Página publicada:** https://esp32-railway-estanque-production.up.railway.app
+
 ```
 ESP32 (flotador P35 + relé) --POST HTTPS--> Railway (Express + página) --SQL con SSL--> Aiven (PostgreSQL)
 ```
@@ -54,7 +56,8 @@ esp32/esp32_railway/esp32_railway.ino   código del ESP32
    proyecto desde el repositorio, variables `DATABASE_URL`, `DB_CA_CERT` y
    `API_KEY`, presionar **Deploy**, generar el dominio con puerto **8080** y
    activar el deploy automático.
-6. **ESP32:** en `esp32_railway.ino`, sección 1, poner la red WiFi (2,4 GHz),
+6. **ESP32:** en `esp32_railway.ino`, sección 1, poner en `REDES_WIFI` una o
+   más redes WiFi (2,4 GHz; la placa se conecta a la que esté disponible),
    la URL de Railway terminada en `/api/lecturas` y la misma `API_KEY`.
    Subir con la placa **ESP32 Dev Module**. En el Monitor Serie (115200)
    debe aparecer `-> 201`.
@@ -70,6 +73,11 @@ esp32/esp32_railway/esp32_railway.ino   código del ESP32
 - `POST /api/lecturas` también rechaza valores no finitos (NaN, infinito).
 - `GET /api/lecturas` acepta `?sensor=nivel` para pedir un solo sensor.
 - La página muestra si el ESP32 está **sin señal** (no llegan datos hace más de 3 minutos).
+- El ESP32 también tiene una **página local** (`http://IP-de-la-placa` o
+  `http://estanque.local`) que funciona dentro del mismo WiFi, aunque no haya internet.
+- Se pueden guardar **varias redes WiFi**: la placa usa la que encuentre (WiFiMulti).
+- En este repositorio el código del ESP32 va **sin claves**: las redes WiFi y la
+  `API_KEY` se escriben solo en la copia local antes de subirlo a la placa.
 
 ## Seguridad
 

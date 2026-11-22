@@ -70,28 +70,40 @@
 #include <HTTPClient.h>
 #include <WebServer.h>
 #include <ESPmDNS.h>
+#include <WiFiMulti.h>
 #include <ArduinoJson.h>
 #include <stdarg.h>
 
 
 // ==========================================================================
-// 1. CAMBIAR ESTOS DATOS   (red WiFi y servidor de Railway)
+// 1. REDES WIFI   <<<<<  AQUÍ SE CAMBIA EL INTERNET  >>>>>
 // ==========================================================================
+//
+//  Escribe las redes WiFi de los lugares donde vas a usar la placa.
+//  Cada línea es:   { "NOMBRE DE LA RED", "CLAVE DE LA RED" },
+//
+//  - La placa se conecta sola a la que encuentre disponible en ese lugar.
+//  - Para agregar otra red: copia una línea completa y cambia nombre y clave.
+//  - Para quitar una red: borra su línea.
+//  - Solo redes de 2,4 GHz. Respeta mayúsculas y minúsculas.
+//  - No borres las comillas, las llaves { } ni la coma del final.
+//  - Después de cambiar algo: guardar (Ctrl+S) y volver a Subir a la placa.
 
-// Los datos privados (WiFi, URL de Railway y API_KEY) van en "secretos.h".
-// Ese archivo NO se sube a GitHub. Usa "secretos.example.h" como plantilla.
-#include "secretos.h"
+const char* REDES_WIFI[][2] = {
+  { "NOMBRE_RED_1", "CLAVE_RED_1" },
+  { "NOMBRE_RED_2", "CLAVE_RED_2" },
+};
 
-// Déjalos así hasta tener Railway listo (con estos valores no se envía nada)
+
+// Datos del servidor en Railway. No hace falta tocarlos ahora:
+// la URL se pone una sola vez cuando Railway esté listo.
+const char* SERVER_URL  = "https://esp32-railway-estanque-production.up.railway.app/api/lecturas";
+const char* API_KEY     = "la-misma-clave-que-pusiste-en-railway";   // igual a la variable API_KEY de Railway
+
 const char* DISPOSITIVO = "esp32-estanque1";
-
 const uint32_t INTERVALO_ENVIO_MS = 60000;   // envío completo a la nube cada 60 s
 
-// Página local
-const char* NOMBRE_EQUIPO = "estanque";      // -> http://estanque.local
-const char* AP_NOMBRE     = "Estanque-ESP32"; // red propia si no hay WiFi
-const char* AP_CLAVE      = "estanque123";    // mínimo 8 caracteres
-const uint32_t ESPERA_WIFI_MS = 20000;        // tiempo antes de crear la red propia
+const char* NOMBRE_EQUIPO = "estanque";      // página local -> http://estanque.local
 
 
 // ==========================================================================
@@ -173,6 +185,8 @@ uint8_t eventosGuardados = 0;
 
 // WiFi y página local
 WebServer servidor(80);
+WiFiMulti wifiMulti;           // prueba todas las redes de la lista
+uint8_t  redesValidas  = 0;
 bool     modoAP        = false;
 bool     mdnsIniciado  = false;
 bool     wifiConectado = false;
@@ -433,7 +447,10 @@ void tareaEnvio(void*) {
 
   for (;;) {
     if (WiFi.status() != WL_CONNECTED) {
-      vTaskDelay(pdMS_TO_TICKS(1000));
+      // Busca y se conecta a una de las redes de la lista (solo frena este núcleo,
+      // el control de la bomba sigue funcionando en el otro).
+      if (redesValidas > 0) wifiMulti.run(10000);
+      vTaskDelay(pdMS_TO_TICKS(2000));
       continue;
     }
 
@@ -724,24 +741,23 @@ void atenderWifi() {
       mdnsIniciado = true;
       Serial.printf("Tambien disponible en: http://%s.local\n", NOMBRE_EQUIPO);
     }
-    if (modoAP) {                 // Ya hay WiFi: se apaga la red propia
-      WiFi.softAPdisconnect(true);
-      WiFi.mode(WIFI_STA);
-      modoAP = false;
-    }
+    Serial.printf("Red WiFi: %s  ->  abre  http://%s  en el celular o PC (mismo WiFi)\n",
+                  WiFi.SSID().c_str(), WiFi.localIP().toString().c_str());
   } else if (!conectadoAhora && wifiConectado) {
-    registrarEvento("WiFi desconectado, reintentando...");
+    registrarEvento("WiFi desconectado, buscando redes...");
     tInicioWifi = millis();
   }
   wifiConectado = conectadoAhora;
 
-  // Sin WiFi por mucho rato: crear red propia (sigue reintentando el WiFi)
-  if (!conectadoAhora && !modoAP && transcurrido(tInicioWifi) >= ESPERA_WIFI_MS) {
-    WiFi.mode(WIFI_AP_STA);
-    WiFi.softAP(AP_NOMBRE, AP_CLAVE);
-    modoAP = true;
-    registrarEvento("Red propia '%s' en http://%s",
-                    AP_NOMBRE, WiFi.softAPIP().toString().c_str());
+  // Aviso cada 30 s mientras no encuentre ninguna red de la lista
+  static uint32_t tAviso = 0;
+  if (!conectadoAhora && transcurrido(tAviso) >= 30000) {
+    tAviso = millis();
+    if (redesValidas == 0) {
+      Serial.println(">> No hay redes WiFi en la lista: escribelas en la seccion 1 del codigo");
+    } else {
+      Serial.println(">> Ninguna red de la lista disponible. Revisa nombre/clave en la seccion 1");
+    }
   }
 }
 
@@ -787,9 +803,17 @@ void setup() {
   WiFi.mode(WIFI_STA);
   WiFi.setHostname(NOMBRE_EQUIPO);
   WiFi.setAutoReconnect(true);
-  WiFi.begin(WIFI_SSID, WIFI_PASS);
+  for (size_t i = 0; i < sizeof(REDES_WIFI) / sizeof(REDES_WIFI[0]); i++) {
+    const char* nombre = REDES_WIFI[i][0];
+    const char* clave  = REDES_WIFI[i][1];
+    // Se saltan las líneas de ejemplo que todavía no tienen datos reales
+    if (strncmp(nombre, "NOMBRE_", 7) == 0 || strncmp(clave, "CLAVE_", 6) == 0) continue;
+    wifiMulti.addAP(nombre, clave);
+    redesValidas++;
+    Serial.printf("Red WiFi en la lista: \"%s\"\n", nombre);
+  }
   tInicioWifi = millis();
-  Serial.printf("Conectando a WiFi \"%s\"...\n", WIFI_SSID);
+  Serial.printf("Buscando una de %u redes WiFi...\n", redesValidas);
 
   configurarServidor();
 
