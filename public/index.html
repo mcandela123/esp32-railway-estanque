@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Panel del estanque</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+  <style>
+    :root { --bg:#f2f5f9; --card:#fff; --txt:#1c2733; --sub:#66768a; --linea:#e3e8ee;
+            --azul:#1f7ae0; --verde:#1a9e5a; --rojo:#d64545; --ambar:#d98a00; }
+    @media (prefers-color-scheme: dark) {
+      :root { --bg:#10161d; --card:#1b242e; --txt:#e6edf3; --sub:#8c9bab; --linea:#2a3542; }
+    }
+    * { box-sizing: border-box; }
+    body { margin:0; font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+           background:var(--bg); color:var(--txt); }
+    .contenedor { max-width: 960px; margin: 0 auto; padding: 20px 16px 32px; }
+    h1 { margin: 0; font-size: 1.5rem; }
+    #estado { margin: 4px 0 16px; color: var(--sub); font-size: .9rem; }
+    #estado.error { color: var(--rojo); font-weight: 600; }
+    .tarjetas { display: grid; gap: 12px; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); }
+    .tarjeta { background: var(--card); border-radius: 14px; padding: 14px 16px;
+               box-shadow: 0 1px 3px rgba(0,0,0,.08); }
+    .titulo { font-size: .75rem; text-transform: uppercase; letter-spacing: .05em; color: var(--sub); }
+    .valor { font-size: 1.6rem; font-weight: 700; margin-top: 6px; }
+    .detalle { font-size: .85rem; color: var(--sub); margin-top: 4px; }
+    .lleno { color: var(--azul); } .vacio { color: var(--ambar); }
+    .on { color: var(--verde); }   .off { color: var(--sub); }
+    .desconectado { color: var(--rojo); }
+    .bloque { background: var(--card); border-radius: 14px; padding: 14px 16px; margin-top: 12px;
+              box-shadow: 0 1px 3px rgba(0,0,0,.08); }
+    .grafico { position: relative; height: 260px; }
+    .tabla-scroll { overflow-x: auto; }
+    table { width: 100%; border-collapse: collapse; margin-top: 8px; font-size: .9rem; }
+    th, td { border-bottom: 1px solid var(--linea); padding: 6px; text-align: left; white-space: nowrap; }
+    th { color: var(--sub); font-weight: 600; }
+  </style>
+</head>
+<body>
+<div class="contenedor">
+  <h1>Panel del estanque</h1>
+  <p id="estado">Cargando...</p>
+
+  <div class="tarjetas">
+    <div class="tarjeta">
+      <div class="titulo">Nivel (flotador P35)</div>
+      <div class="valor" id="nivel">-</div>
+      <div class="detalle" id="nivelHora"></div>
+    </div>
+    <div class="tarjeta">
+      <div class="titulo">Bomba</div>
+      <div class="valor" id="bomba">-</div>
+      <div class="detalle" id="bombaHora"></div>
+    </div>
+    <div class="tarjeta">
+      <div class="titulo">Estado del control</div>
+      <div class="valor" id="control" style="font-size:1.15rem">-</div>
+      <div class="detalle" id="controlHora"></div>
+    </div>
+    <div class="tarjeta">
+      <div class="titulo">ESP32</div>
+      <div class="valor" id="conexion">-</div>
+      <div class="detalle" id="ultimoDato"></div>
+    </div>
+  </div>
+
+  <div class="bloque">
+    <div class="titulo">Historial de nivel y bomba</div>
+    <div class="grafico"><canvas id="grafico"></canvas></div>
+  </div>
+
+  <div class="bloque">
+    <div class="titulo">Últimas lecturas guardadas</div>
+    <div class="tabla-scroll">
+      <table>
+        <thead><tr><th>ID</th><th>Dispositivo</th><th>Sensor</th><th>Valor</th><th>Fecha</th></tr></thead>
+        <tbody id="tabla"></tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<script>
+  // Significado de cada valor que manda el ESP32
+  const ESTADOS = ["APAGADA", "ESPERANDO ARRANQUE", "ENCENDIDA", "ESPERANDO CORTE", "DESCANSO"];
+  const SIN_DATOS_MS = 3 * 60 * 1000; // si no llega nada en 3 min, el ESP32 se considera desconectado
+
+  function texto(sensor, valor) {
+    if (sensor === "nivel")  return valor >= 1 ? "LLENO" : "VACÍO";
+    if (sensor === "bomba")  return valor >= 1 ? "ENCENDIDA" : "APAGADA";
+    if (sensor === "estado") return ESTADOS[Math.round(valor)] || String(valor);
+    return String(valor);
+  }
+
+  // Evita que un texto guardado en la base se interprete como HTML
+  function escapar(s) {
+    return String(s).replace(/[&<>"']/g, c =>
+      ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
+  }
+
+  function hace(fecha) {
+    const s = Math.max(0, Math.round((Date.now() - fecha) / 1000));
+    if (s < 60) return "hace " + s + " s";
+    if (s < 3600) return "hace " + Math.floor(s / 60) + " min";
+    if (s < 86400) return "hace " + Math.floor(s / 3600) + " h";
+    return "hace " + Math.floor(s / 86400) + " días";
+  }
+
+  const grafico = new Chart(document.getElementById("grafico"), {
+    type: "line",
+    data: { datasets: [
+      { label: "Nivel (1 = lleno)",       data: [], stepped: true, borderColor: "#1f7ae0", backgroundColor: "#1f7ae0", pointRadius: 2 },
+      { label: "Bomba (1 = encendida)",   data: [], stepped: true, borderColor: "#1a9e5a", backgroundColor: "#1a9e5a", pointRadius: 2 }
+    ] },
+    options: {
+      maintainAspectRatio: false,
+      animation: false,
+      parsing: false,
+      scales: {
+        x: { type: "linear", ticks: { callback: v => new Date(v).toLocaleTimeString(), maxTicksLimit: 6 } },
+        y: { min: -0.1, max: 1.1, ticks: { stepSize: 1, callback: v => (v === 1 ? "1" : v === 0 ? "0" : "") } }
+      },
+      plugins: { tooltip: { callbacks: {
+        title: items => new Date(items[0].parsed.x).toLocaleString(),
+        label: item => item.dataset.label.split(" (")[0] + ": " +
+                       texto(item.datasetIndex === 0 ? "nivel" : "bomba", item.parsed.y)
+      } } }
+    }
+  });
+
+  function ultimo(datos, sensor) {
+    return datos.find(d => d.sensor === sensor); // los datos vienen del más nuevo al más viejo
+  }
+
+  function mostrarTarjeta(id, clase, d, sensor) {
+    const el = document.getElementById(id);
+    const hora = document.getElementById(id + "Hora");
+    if (!d) { el.textContent = "-"; el.className = "valor"; hora.textContent = "Sin datos"; return; }
+    el.textContent = texto(sensor, d.valor);
+    el.className = "valor " + (clase ? clase(d.valor) : "");
+    hora.textContent = "Actualizado " + hace(new Date(d.creado_en));
+  }
+
+  async function actualizar() {
+    try {
+      const res = await fetch("/api/lecturas?limite=300");
+      if (!res.ok) throw new Error("HTTP " + res.status);
+      const datos = await res.json();
+
+      mostrarTarjeta("nivel",   v => (v >= 1 ? "lleno" : "vacio"), ultimo(datos, "nivel"),  "nivel");
+      mostrarTarjeta("bomba",   v => (v >= 1 ? "on" : "off"),      ultimo(datos, "bomba"),  "bomba");
+      // Para el estado se usa la tarjeta "control"
+      const est = ultimo(datos, "estado");
+      document.getElementById("control").textContent = est ? texto("estado", est.valor) : "-";
+      document.getElementById("controlHora").textContent = est ? "Actualizado " + hace(new Date(est.creado_en)) : "Sin datos";
+
+      const masNuevo = datos[0] ? new Date(datos[0].creado_en) : null;
+      const conectado = masNuevo && (Date.now() - masNuevo) < SIN_DATOS_MS;
+      const con = document.getElementById("conexion");
+      con.textContent = masNuevo ? (conectado ? "EN LÍNEA" : "SIN SEÑAL") : "-";
+      con.className = "valor " + (masNuevo ? (conectado ? "on" : "desconectado") : "");
+      document.getElementById("ultimoDato").textContent =
+        masNuevo ? "Último dato " + hace(masNuevo) : "Todavía no llegan datos";
+
+      const serie = s => datos.filter(d => d.sensor === s).reverse()
+                              .map(d => ({ x: new Date(d.creado_en).getTime(), y: d.valor }));
+      grafico.data.datasets[0].data = serie("nivel");
+      grafico.data.datasets[1].data = serie("bomba");
+      grafico.update();
+
+      document.getElementById("tabla").innerHTML = datos.slice(0, 30).map(d =>
+        `<tr><td>${d.id}</td><td>${escapar(d.dispositivo)}</td><td>${escapar(d.sensor)}</td>` +
+        `<td>${escapar(texto(d.sensor, d.valor))} (${d.valor})</td>` +
+        `<td>${new Date(d.creado_en).toLocaleString()}</td></tr>`
+      ).join("");
+
+      const estado = document.getElementById("estado");
+      estado.className = "";
+      estado.textContent = `Última actualización: ${new Date().toLocaleTimeString()} (${datos.length} lecturas)`;
+    } catch (e) {
+      const estado = document.getElementById("estado");
+      estado.className = "error";
+      estado.textContent = "Error al cargar datos. Reintentando...";
+    }
+  }
+  actualizar();
+  setInterval(actualizar, 5000); // refresca cada 5 segundos
+</script>
+</body>
+</html>

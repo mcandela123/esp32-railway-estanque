@@ -1,0 +1,4 @@
+node_modules/
+.env
+ca.pem
+esp32/esp32_railway/secretos.h
