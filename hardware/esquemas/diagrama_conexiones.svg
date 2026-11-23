@@ -1,0 +1,70 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1100 640" font-family="Arial, Helvetica, sans-serif">
+  <rect width="1100" height="640" fill="#ffffff"/>
+  <text x="550" y="34" text-anchor="middle" font-size="22" font-weight="bold" fill="#1c2733">Diagrama de conexiones — Llenado automático de estanque</text>
+  <text x="550" y="58" text-anchor="middle" font-size="14" fill="#66768a">Baja tensión (3,3 V / 5 V) a la izquierda · 220 V CA a la derecha (siempre con la energía cortada al conectar)</text>
+
+  <!-- zona separacion -->
+  <line x1="700" y1="80" x2="700" y2="610" stroke="#d64545" stroke-width="2" stroke-dasharray="8 6"/>
+  <text x="710" y="100" font-size="13" fill="#d64545" font-weight="bold">⚠ 220 V CA</text>
+  <text x="690" y="100" font-size="13" fill="#1a9e5a" font-weight="bold" text-anchor="end">Baja tensión</text>
+
+  <!-- Fuente USB -->
+  <rect x="40" y="130" width="170" height="80" rx="8" fill="#eef3fa" stroke="#1c2733" stroke-width="2"/>
+  <text x="125" y="162" text-anchor="middle" font-size="16" font-weight="bold">Fuente USB 5 V</text>
+  <text x="125" y="184" text-anchor="middle" font-size="13" fill="#66768a">cargador ≥ 1 A</text>
+
+  <!-- ESP32 -->
+  <rect x="300" y="110" width="230" height="300" rx="10" fill="#fff7e6" stroke="#1c2733" stroke-width="2"/>
+  <text x="415" y="142" text-anchor="middle" font-size="18" font-weight="bold">ESP32 Dev Module</text>
+  <text x="415" y="162" text-anchor="middle" font-size="12" fill="#66768a">ESP32 (confirmado por esptool)</text>
+  <text x="312" y="200" font-size="14">USB / VIN 5V</text>
+  <text x="312" y="250" font-size="14">GPIO 27  (entrada, pull-up)</text>
+  <text x="312" y="300" font-size="14">GPIO 26  (salida a relé)</text>
+  <text x="312" y="340" font-size="14">GPIO 2   (LED integrado)</text>
+  <text x="312" y="380" font-size="14">GND</text>
+
+  <!-- Flotador -->
+  <rect x="40" y="420" width="190" height="90" rx="8" fill="#e8f4ff" stroke="#1f7ae0" stroke-width="2"/>
+  <text x="135" y="452" text-anchor="middle" font-size="16" font-weight="bold">Flotador P35</text>
+  <text x="135" y="474" text-anchor="middle" font-size="12" fill="#66768a">contacto seco</text>
+  <text x="135" y="492" text-anchor="middle" font-size="12" fill="#66768a">cerrado = estanque VACÍO</text>
+
+  <!-- Relé -->
+  <rect x="560" y="430" width="250" height="140" rx="8" fill="#eafaf1" stroke="#1a9e5a" stroke-width="2"/>
+  <text x="685" y="460" text-anchor="middle" font-size="16" font-weight="bold">Módulo relé (activo en LOW)</text>
+  <text x="575" y="490" font-size="13">VCC ← 5V (VIN)</text>
+  <text x="575" y="510" font-size="13">GND ← GND</text>
+  <text x="575" y="530" font-size="13">IN  ← GPIO 26</text>
+  <text x="720" y="500" font-size="13">COM</text>
+  <text x="720" y="540" font-size="13">NO</text>
+
+  <!-- Bomba y red -->
+  <rect x="880" y="150" width="190" height="80" rx="8" fill="#fdecec" stroke="#d64545" stroke-width="2"/>
+  <text x="975" y="182" text-anchor="middle" font-size="16" font-weight="bold">Red 220 V CA</text>
+  <text x="975" y="204" text-anchor="middle" font-size="12" fill="#66768a">Fase (L) · Neutro (N) · Tierra</text>
+  <rect x="880" y="430" width="190" height="90" rx="8" fill="#fdecec" stroke="#d64545" stroke-width="2"/>
+  <text x="975" y="465" text-anchor="middle" font-size="16" font-weight="bold">Bomba de agua</text>
+  <text x="975" y="487" text-anchor="middle" font-size="12" fill="#66768a">220 V CA</text>
+
+  <!-- cables baja tension -->
+  <polyline points="210,170 260,170 260,195 300,195" fill="none" stroke="#d98a00" stroke-width="3"/>
+  <text x="235" y="160" font-size="12" fill="#d98a00">5V USB</text>
+  <polyline points="230,450 270,450 270,245 300,245" fill="none" stroke="#1f7ae0" stroke-width="3"/>
+  <text x="240" y="440" font-size="12" fill="#1f7ae0">señal</text>
+  <polyline points="230,490 285,490 285,375 300,375" fill="none" stroke="#1c2733" stroke-width="3"/>
+  <text x="240" y="508" font-size="12">GND</text>
+  <polyline points="530,295 545,295 545,525 560,525" fill="none" stroke="#1a9e5a" stroke-width="3"/>
+  <text x="535" y="285" font-size="12" fill="#1a9e5a">IN</text>
+  <polyline points="530,200 552,200 552,485 560,485" fill="none" stroke="#d98a00" stroke-width="3"/>
+  <polyline points="530,378 548,378 548,505 560,505" fill="none" stroke="#1c2733" stroke-width="3"/>
+
+  <!-- cables 220 -->
+  <polyline points="880,180 840,180 840,495 760,495" fill="none" stroke="#8b4513" stroke-width="3"/>
+  <text x="845" y="300" font-size="12" fill="#8b4513">Fase L → COM</text>
+  <polyline points="760,535 850,535 850,470 880,470" fill="none" stroke="#8b4513" stroke-width="3"/>
+  <text x="772" y="555" font-size="12" fill="#8b4513">NO → fase bomba</text>
+  <polyline points="1070,200 1085,200 1085,490 1070,490" fill="none" stroke="#1f4fa0" stroke-width="3"/>
+  <text x="1090" y="350" font-size="12" fill="#1f4fa0" transform="rotate(90 1090 350)">Neutro y tierra directo</text>
+
+  <text x="40" y="600" font-size="12" fill="#66768a">Pines según el firmware (esp32_railway.ino, sección 3). Colores de cable físicos y modelo exacto de relé/bomba: ver detalle_conexiones.md.</text>
+</svg>
