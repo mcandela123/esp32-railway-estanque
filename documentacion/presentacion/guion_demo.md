@@ -2,17 +2,17 @@
 
 Reparto sugerido según el rol de cada integrante (ajustar si quieren).
 
-| Minuto | Lámina / acción | Quién |
-|---|---|---|
-| 0:00 – 1:00 | Problema y ODS 6: en Culiprán y San Pedro (Melipilla) no hay agua potable por tuberías; el agua sale de pozo, se guarda en estanques que rebalsan y se pierde | Mateo |
-| 1:00 – 2:00 | Solución y arquitectura (ESP32 → Railway → Aiven) | Claudio |
-| 2:00 – 4:00 | **Demo en vivo:** mover el flotador, ver cómo la bomba (o el LED del GPIO 2) enciende tras 10 s, y mostrar la página pública en el celular | Mateo y Claudio |
-| 4:00 – 5:00 | Software: máquina de estados, envío en otro núcleo, API con clave | Claudio |
-| 5:00 – 6:00 | Hardware: componentes, conexiones y separación de 220 V | Mateo |
-| 6:00 – 7:00 | Diseño 3D: caja, techo con riel, tubo telescópico, 7 piezas | Diego |
-| 7:00 – 8:00 | Testing: puesta en marcha y resultados | Mateo |
-| 8:00 – 9:00 | Iteraciones y lecciones | Diego |
-| 9:00 – 10:00 | Conclusiones y qué mejorarían | Los tres |
+| Minuto | Diapositiva | Qué se dice / muestra | Quién |
+|---|---|---|---|
+| 0:00 – 1:00 | 1–2 | Problema y ODS 6: en Culiprán y San Pedro (Melipilla) no hay agua potable por tuberías; el agua sale de pozo, se guarda en estanques que rebalsan y se pierde | Mateo |
+| 1:00 – 2:00 | 3 | Solución y arquitectura (ESP32 → Railway → Aiven) | Claudio |
+| 2:00 – 4:00 | 4 | **Demo en vivo:** mover el flotador, ver cómo la bomba (o el LED del GPIO 2) enciende tras 10 s, y mostrar la página pública en el celular | Mateo y Claudio |
+| 4:00 – 5:00 | 5 | **Cómo funciona el código:** lee el flotador, decide con 5 estados, activa el relé, envía desde el otro núcleo y la página muestra | Claudio |
+| 5:00 – 6:00 | 6 | Hardware: componentes, conexiones, separación de 220 V y costo de $12.000 | Mateo |
+| 6:00 – 7:00 | 7 | Diseño 3D: techo con riel, caja, tubo telescópico, 7 piezas | Diego |
+| 7:00 – 8:00 | 8 | Resultados: puesta en marcha con datos reales | Mateo |
+| 8:00 – 9:00 | 9 | Iteraciones (v1 → v3) y lecciones | Diego |
+| 9:00 – 10:00 | 10 | Cierre, proyección y preguntas | Los tres |
 
 ## Plan B
 
