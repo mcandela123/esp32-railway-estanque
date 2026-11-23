@@ -1,12 +1,17 @@
 # Archivo de Fusion 360
 
-**POR COMPLETAR.** Exportar desde Fusion 360 el diseño `ESP32_PCB`, que contiene la PCB
-y el componente `Encapsulado` (caja, techo A, techo B, tubo 1 acople, tubo 1 tramo,
-tubo 2 y tubo 3):
+[`estanque_encapsulado.f3d`](estanque_encapsulado.f3d) (17,2 MB), exportado el 22-11-2026
+desde el diseño `ESP32_PCB`.
 
-1. Abrir `ESP32_PCB` en Fusion 360.
-2. **Archivo → Exportar → Tipo: Archivos de archivo de Fusion (.f3d)**.
-3. Guardarlo aquí como `estanque_encapsulado.f3d`.
-4. Probar que abre en otro computador.
+Contiene el **ensamble completo**:
 
-Los STL de cada pieza ya están en [`../stl/`](../stl/).
+- La **PCB** con sus componentes (relés, borneras, USB, regulador, cabeceras de pines) con volúmenes reales.
+- El componente **Encapsulado** con sus 7 cuerpos: `Caja_Base`, `Techo_A`, `Techo_B`,
+  `Tubo_1_Acople`, `Tubo_1_Tramo`, `Tubo_2` y `Tubo_3`, con roscas modeladas.
+
+## Cómo abrirlo
+
+1. En Fusion 360: **Archivo → Abrir → Abrir desde mi equipo** y elegir `estanque_encapsulado.f3d`.
+2. **POR COMPLETAR:** probarlo en otro computador y anotar aquí que abre bien.
+
+Los STL de cada pieza están en [`../stl/`](../stl/).

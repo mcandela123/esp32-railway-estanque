@@ -9,10 +9,10 @@ componente `Encapsulado`), así que el gemelo 3D incluye la placa con sus volúm
 
 | Carpeta | Contenido | Estado |
 |---|---|---|
+| [`fusion360/`](fusion360/) | `estanque_encapsulado.f3d`: ensamble completo con la PCB y las 7 piezas | ✅ Exportado |
 | [`stl/`](stl/) | Las 7 piezas listas para imprimir (STL en mm) | ✅ Listo |
-| [`renders/`](renders/) | Vistas del modelo | 1 de 3 (faltan explosionado e interior) |
-| [`fusion360/`](fusion360/) | Archivo `.f3d` con el ensamble completo | **POR COMPLETAR**: exportar desde Fusion |
-| [`planos/`](planos/) | Vistas ortogonales con cotas | **POR COMPLETAR** |
+| [`renders/`](renders/) | Exterior, exterior en alta resolución e interior | ✅ 3 renders (falta el explosionado) |
+| [`planos/`](planos/) | Vistas ortogonales y tabla de cotas | ✅ Vistas · **POR COMPLETAR** plano con cotas dibujadas |
 
 ## Piezas
 
@@ -70,8 +70,7 @@ Medidas obtenidas de los STL exportados.
 
 ## Pendiente (POR COMPLETAR)
 
-1. Abrir el diseño `ESP32_PCB` en Fusion 360 y exportar **Archivo → Exportar → .f3d** a `fusion360/`.
-   Probar que abre en otro computador.
-2. Plano técnico con vistas ortogonales, cotas, escala y tolerancia general de 0,2 mm (entorno *Drawing*) → `planos/`.
-3. Renders **explosionado** e **interior** (con el techo quitado) → `renders/`.
+1. Probar que `fusion360/estanque_encapsulado.f3d` abre en otro computador.
+2. Plano con cotas dibujadas, escala y cajetín (entorno *Drawing*) → `planos/`.
+3. Render **explosionado** → `renders/`.
 4. Medir con pie de metro la placa real y comparar con el modelo.

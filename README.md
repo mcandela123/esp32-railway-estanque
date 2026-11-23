@@ -47,7 +47,7 @@ ESP32 (flotador P35 + relé) --POST HTTPS--> Railway (Express + página) --SQL c
 |---|---|
 | Versión | Iteración 3 (22-11-2026) |
 | Funciona | Control de la bomba, página local, envío a Railway, base de datos y dashboard público |
-| Falta | Fotos reales, BOM con precios, `.f3d`, planos y renders adicionales, pruebas formales con 5 usuarios, reporte y presentación |
+| Falta | Fotos reales, BOM con precios, plano con cotas, render explosionado, pruebas formales con 5 usuarios, reporte y presentación |
 
 ## Resultados clave
 
@@ -122,8 +122,8 @@ Guía completa: [`software/README.md`](software/README.md).
 - [x] Diagrama de conexiones
 - [ ] BOM con precios y enlaces reales
 - [ ] Fotos reales del prototipo
-- [x] STL de las 7 piezas y render exterior
-- [ ] `.f3d` que abre, plano con cotas, render explosionado e interior
+- [x] STL de las 7 piezas, `.f3d` exportado, vistas ortogonales y 3 renders (exterior, alta resolución, interior)
+- [ ] Probar el `.f3d` en otro computador, plano con cotas dibujadas y render explosionado
 - [x] Protocolo de pruebas redactado antes de las pruebas formales
 - [ ] Pruebas formales con datos reales y 5 usuarios
 - [x] Iteraciones con fechas reales

@@ -1,0 +1,27 @@
+{
+  "title": "Encapsulado \u2014 Llenado autom\u00e1tico de estanque (TEI201)",
+  "document": "ESP32_PCB",
+  "views": [
+    {
+      "view": "iso",
+      "path": "C:\\Users\\marti\\Downloads\\codigo\\esp32-railway-estanque\\diseno_3d\\planos\\vistas_ortogonales\\iso.png"
+    },
+    {
+      "view": "front",
+      "path": "C:\\Users\\marti\\Downloads\\codigo\\esp32-railway-estanque\\diseno_3d\\planos\\vistas_ortogonales\\front.png"
+    },
+    {
+      "view": "top",
+      "path": "C:\\Users\\marti\\Downloads\\codigo\\esp32-railway-estanque\\diseno_3d\\planos\\vistas_ortogonales\\top.png"
+    },
+    {
+      "view": "right",
+      "path": "C:\\Users\\marti\\Downloads\\codigo\\esp32-railway-estanque\\diseno_3d\\planos\\vistas_ortogonales\\right.png"
+    }
+  ],
+  "html_path": "C:\\Users\\marti\\Downloads\\codigo\\esp32-railway-estanque\\diseno_3d\\planos\\vistas_ortogonales\\view_sheet.html",
+  "image_size": [
+    1400,
+    1050
+  ]
+}
