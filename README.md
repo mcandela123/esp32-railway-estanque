@@ -54,7 +54,7 @@ ESP32 (flotador P35 + relé) --POST HTTPS--> Railway (Express + página) --SQL c
 |---|---|
 | Versión | Iteración 3 (22-11-2026) |
 | Funciona | Control de la bomba, página local, envío a Railway, base de datos y dashboard público |
-| Falta | Pruebas formales A a C, reporte final y láminas de la presentación |
+| Falta | Pruebas formales A a C |
 
 ## Resultados clave
 
@@ -135,7 +135,8 @@ Guía completa: [`software/README.md`](software/README.md).
 - [x] Iteraciones con fechas reales
 - [x] Integrantes y roles en este README
 - [x] ODS y contexto del problema
-- [ ] Reporte (máximo 15 páginas) y presentación (10 min) en `documentacion/`
+- [x] [Reporte final en PDF](documentacion/reporte_final/reporte_final.pdf) (13 páginas)
+- [ ] Presentación (10 min) en `documentacion/presentacion/`
 - [ ] Commits de todos los integrantes
 - [ ] Todos los enlaces probados en una ventana de incógnito
 

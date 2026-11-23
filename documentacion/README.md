@@ -2,5 +2,5 @@
 
 | Carpeta | Contenido | Estado |
 |---|---|---|
-| [`reporte_final/`](reporte_final/) | Reporte final (máximo 15 páginas), en `.md` y `.pdf` | Borrador con estructura y datos reales; faltan las secciones del equipo |
+| [`reporte_final/`](reporte_final/) | [Reporte final en PDF](reporte_final/reporte_final.pdf) (13 páginas) y su fuente HTML | ✅ Listo |
 | [`presentacion/`](presentacion/) | Presentación de 10 minutos (`.pdf`) y [guion de la demo](presentacion/guion_demo.md) | Guion en borrador; láminas **POR COMPLETAR** |

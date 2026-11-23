@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>Reporte final — Llenado automático de estanque</title>
+<style>
+  @page { size: A4; margin: 18mm 17mm 18mm 17mm; }
+  * { box-sizing: border-box; }
+  body { font-family: "Segoe UI", Arial, sans-serif; font-size: 10.5pt; line-height: 1.45; color: #1c2733; margin: 0; }
+  h1 { font-size: 22pt; margin: 0 0 4mm; color: #123a6b; }
+  h2 { font-size: 15pt; color: #123a6b; border-bottom: 2px solid #1f7ae0; padding-bottom: 1.5mm; margin: 7mm 0 3mm; page-break-after: avoid; }
+  h3 { font-size: 11.5pt; color: #1c2733; margin: 4.5mm 0 1.5mm; page-break-after: avoid; }
+  p { margin: 0 0 2.5mm; text-align: justify; }
+  ul, ol { margin: 0 0 2.5mm; padding-left: 6mm; }
+  li { margin-bottom: 1mm; }
+  table { width: 100%; border-collapse: collapse; margin: 2mm 0 3.5mm; font-size: 9.3pt; page-break-inside: avoid; }
+  th, td { border: 1px solid #c9d2dc; padding: 1.4mm 2mm; vertical-align: top; text-align: left; }
+  th { background: #eaf1fa; }
+  figure { margin: 3mm 0 4mm; text-align: center; page-break-inside: avoid; }
+  figure img { max-width: 100%; border: 1px solid #d5dce4; }
+  figcaption { font-size: 8.8pt; color: #555; margin-top: 1.2mm; }
+  .fila { display: flex; gap: 4mm; justify-content: center; align-items: flex-start; }
+  .fila figure { flex: 1; margin: 2mm 0; }
+  code, .mono { font-family: Consolas, monospace; font-size: 9pt; background: #f1f4f8; padding: 0 1mm; }
+  pre { font-family: Consolas, monospace; font-size: 8.6pt; background: #f1f4f8; padding: 2.5mm; border-radius: 2mm; white-space: pre-wrap; page-break-inside: avoid; }
+  .portada { height: 255mm; display: flex; flex-direction: column; justify-content: space-between; page-break-after: always; }
+  .portada .titulo { margin-top: 22mm; }
+  .portada .sub { font-size: 13pt; color: #444; margin-bottom: 8mm; }
+  .portada img { width: 72%; border: none; }
+  .meta td { border: none; padding: 0.8mm 0; font-size: 10.5pt; }
+  .caja { background: #f4f8fd; border-left: 4px solid #1f7ae0; padding: 2.5mm 3.5mm; margin: 3mm 0; page-break-inside: avoid; }
+  .salto { page-break-before: always; }
+  .indice li { margin-bottom: 0.6mm; }
+  .pend { color: #b05a00; font-weight: 600; }
+</style>
+</head>
+<body>
+
+<!-- PORTADA -->
+<section class="portada">
+  <div class="titulo">
+    <div style="font-size:11pt;color:#1f7ae0;font-weight:600;letter-spacing:.05em">TEI201 · INTRODUCCIÓN AL DISEÑO EN INGENIERÍA · UNIVERSIDAD ADOLFO IBÁÑEZ</div>
+    <h1 style="font-size:28pt;margin-top:6mm">Llenado automático de estanque</h1>
+    <div class="sub">Control de bomba con flotador y monitoreo a distancia para hogares con agua de pozo en Culiprán y San Pedro (Melipilla) — ODS 6</div>
+    <div style="text-align:center"><img src="../../diseno_3d/renders/render_02_exterior_alta.png" alt="Render del encapsulado"></div>
+  </div>
+  <table class="meta">
+    <tr><td style="width:40mm"><b>Equipo</b></td><td>Claudio Martínez (código) · Diego Poupin (diseño 3D) · Mateo Candela (electrónica y testing)</td></tr>
+    <tr><td><b>Fecha</b></td><td>Noviembre de 2026</td></tr>
+    <tr><td><b>Repositorio</b></td><td>https://github.com/mcandela123/esp32-railway-estanque</td></tr>
+    <tr><td><b>Página publicada</b></td><td>https://esp32-railway-estanque-production.up.railway.app</td></tr>
+  </table>
+</section>
+
+<h2 style="margin-top:0">Índice</h2>
+<ol class="indice">
+  <li>Problema, contexto y ODS</li>
+  <li>Solución propuesta</li>
+  <li>Software</li>
+  <li>Hardware</li>
+  <li>Diseño 3D</li>
+  <li>Testing</li>
+  <li>Iteraciones</li>
+  <li>Conclusiones y trabajo futuro</li>
+  <li>Referencias y declaración de uso de IA</li>
+</ol>
+
+<h2>1. Problema, contexto y ODS</h2>
+<h3>Contexto</h3>
+<p>En los sectores rurales de <b>Culiprán y San Pedro</b>, en la provincia de <b>Melipilla</b> (Región Metropolitana, Chile), no existe red de agua potable por tuberías. Las familias obtienen el agua de un <b>pozo</b>, desde donde una bomba eléctrica la sube a un <b>estanque</b> de almacenamiento (en este proyecto, de 2000 litros), que abastece la casa.</p>
+<h3>Problema</h3>
+<p>La bomba se enciende y se apaga <b>a mano</b>. Cuando nadie la apaga a tiempo, el estanque <b>rebalsa</b> y el agua se pierde: es un problema que comparten varios vecinos del sector. Como el pozo es la única fuente de agua del hogar, cada rebalse es agua que se desperdicia, además de energía eléctrica gastada sin necesidad. En el caso contrario, si nadie enciende la bomba, el estanque se queda vacío y la casa se queda sin agua.</p>
+<div class="caja"><b>Necesidad:</b> que la bomba se apague sola cuando el estanque se llena, que se encienda sola cuando se vacía, y que la familia pueda saber el estado del estanque sin tener que ir a mirarlo.</div>
+<h3>Objetivo de Desarrollo Sostenible</h3>
+<p>El proyecto se enmarca en el <b>ODS 6: Agua limpia y saneamiento</b>, en particular en la meta <b>6.4</b> (aumentar el uso eficiente de los recursos hídricos) y en la meta <b>6.1</b> (acceso al agua para las familias). Evitar rebalses reduce el desperdicio de un recurso escaso en zonas sin red de agua potable.</p>
+<h3>Requisitos de diseño</h3>
+<table>
+  <tr><th>Requisito</th><th>Cómo se aborda</th></tr>
+  <tr><td>Apagar la bomba al llenarse el estanque</td><td>Flotador P35 + relé controlado por un ESP32</td></tr>
+  <tr><td>Encender la bomba cuando el estanque se vacía, sin encendidos repetidos</td><td>Máquina de estados con retardo de arranque (10 s) y descanso mínimo del motor (60 s)</td></tr>
+  <tr><td>Ver el estado a distancia</td><td>Envío de datos por WiFi a un servidor en la nube con página pública</td></tr>
+  <tr><td>Resistir el uso en exterior</td><td>Encapsulado con techo de una sola agua, alero y riel</td></tr>
+  <tr><td>Llevar el sensor hasta el estanque</td><td>Tubo telescópico regulable de tres tramos</td></tr>
+  <tr><td>Fabricable con los recursos disponibles</td><td>Piezas de 10 cm o menos para la impresora 3D de la universidad; costo total de $12.000 CLP</td></tr>
+</table>
+
+<h2 class="salto">2. Solución propuesta</h2>
+<p>Un <b>ESP32</b> lee un <b>flotador P35</b> instalado en el estanque. Cuando el flotador indica que el estanque está vacío, el ESP32 activa un <b>relé</b> que enciende la <b>bomba</b>; cuando indica que está lleno, la apaga. El control funciona siempre de forma local, aunque no haya internet. Además, el ESP32 envía el nivel, el estado de la bomba y el estado del control a un servidor en <b>Railway</b>, que los guarda en una base de datos <b>PostgreSQL en Aiven</b> y los muestra en una página web pública.</p>
+<pre>ESP32 (flotador P35 + relé) ──POST HTTPS──> Railway (Express + página) ──SQL con SSL──> Aiven (PostgreSQL)
+        │                                            ▲
+        └── página local (mismo WiFi)                └── celular o PC, desde cualquier lugar</pre>
+<div class="fila">
+  <figure><img src="../../hardware/fotos/foto_01_encapsulado_frontal.jpg" style="max-height:105mm"><figcaption>Figura 1. Prototipo impreso: encapsulado, tubo telescópico y flotador P35 en la punta.</figcaption></figure>
+  <figure><img src="../../software/docs/img/dashboard_railway_2026-11-22.jpg" style="max-height:105mm"><figcaption>Figura 2. Página pública con datos reales del ESP32.</figcaption></figure>
+</div>
+
+<h2>3. Software</h2>
+<h3>3.1 Captura de datos</h3>
+<table>
+  <tr><th>Dato</th><th>Valores</th><th>Origen</th></tr>
+  <tr><td><code>nivel</code></td><td>1 = LLENO, 0 = VACÍO</td><td>Flotador P35 en GPIO 27 (pull-up interna)</td></tr>
+  <tr><td><code>bomba</code></td><td>1 = ENCENDIDA, 0 = APAGADA</td><td>Salida al relé (GPIO 26)</td></tr>
+  <tr><td><code>estado</code></td><td>0 Apagada · 1 Esperando arranque · 2 Encendida · 3 Esperando corte · 4 Descanso</td><td>Máquina de estados</td></tr>
+</table>
+<p>Los datos se envían <b>apenas cambian</b> y además <b>cada 60 s</b> como latido. El nivel de un estanque cambia en minutos, por lo que enviar más seguido solo llenaría la base de datos gratuita. Antes de decidir, el firmware filtra el flotador con un <b>antirrebote de 80 ms</b>, exige que marque vacío durante <b>10 s</b> antes de encender y deja un <b>descanso de 60 s</b> después de cada corte para proteger el motor. Tras un corte de luz, el equipo parte en descanso para que la bomba no arranque de golpe.</p>
+<h3>3.2 Comunicación sin frenar el control</h3>
+<p>El ESP32 tiene dos núcleos. El <b>núcleo 1</b> ejecuta el control de la bomba; el <b>núcleo 0</b> ejecuta una tarea aparte que envía las lecturas por HTTPS desde una <b>cola de 30 posiciones</b>, con <b>hasta 3 reintentos</b>. Así, si el WiFi o el servidor fallan, la bomba sigue cortando a tiempo. El WiFi se conecta sin bloquear y admite <b>varias redes guardadas</b> (WiFiMulti). El ESP32 también publica una <b>página local</b> con nivel, bomba, tiempos, llenados y últimos eventos, visible dentro del mismo WiFi.</p>
+<h3>3.3 Repositorio de datos y API</h3>
+<p>El servidor es una aplicación <b>Node.js 18 con Express</b> desplegada en Railway. Guarda cada dato como una fila de la tabla <code>lecturas</code> (<code>id</code>, <code>dispositivo</code>, <code>sensor</code>, <code>valor</code>, <code>creado_en</code>) en <b>PostgreSQL 18</b> (Aiven, plan gratuito). Este formato permite agregar sensores nuevos sin cambiar la base.</p>
+<table>
+  <tr><th>Ruta</th><th>Función</th><th>Seguridad</th></tr>
+  <tr><td><code>POST /api/lecturas</code></td><td>Guarda una lectura del ESP32 (responde 201)</td><td>Exige <code>x-api-key</code> (401 sin ella); valida campos y que el valor sea numérico y finito (400)</td></tr>
+  <tr><td><code>GET /api/lecturas</code></td><td>Entrega las últimas lecturas (filtro opcional <code>?sensor=</code>)</td><td>Consultas SQL parametrizadas</td></tr>
+  <tr><td><code>GET /api/salud</code></td><td>Comprueba la conexión con la base</td><td>—</td></tr>
+</table>
+<h3>3.4 Dashboard y generación de información</h3>
+<p>La página pública muestra el nivel actual, la bomba, el estado del control, un gráfico escalonado del historial y una tabla de lecturas, y se actualiza cada 5 s. Si no llegan datos en 3 minutos, muestra <b>SIN SEÑAL</b>, lo que permite detectar un corte de luz, de WiFi o una placa desconectada. Con los datos reales se calcularon indicadores como la cantidad de encendidos de la bomba, la duración de cada ciclo y el tiempo de confirmación antes de encender (sección 6).</p>
+<h3>3.5 Calidad y seguridad del código</h3>
+<ul>
+  <li>Configuración en un solo lugar del firmware: redes WiFi, pines y tiempos.</li>
+  <li>Relé en estado apagado antes de configurar el pin, para evitar pulsos al encender.</li>
+  <li>Claves fuera del repositorio: <code>.env</code> en <code>.gitignore</code>, firmware publicado con valores de ejemplo y revisión del historial completo de Git.</li>
+  <li>Escape de HTML en el dashboard; consultas parametrizadas contra inyección SQL.</li>
+  <li>Firmware: 84 % de la memoria de programa y 16 % de la RAM del ESP32.</li>
+</ul>
+
+<h2 class="salto">4. Hardware</h2>
+<h3>4.1 Componentes y justificación</h3>
+<table>
+  <tr><th style="width:24%">Componente</th><th>Justificación</th></tr>
+  <tr><td><b>ESP32 Dev Module</b> (en PCB de la universidad)</td><td>WiFi integrado para enviar por HTTPS, dos núcleos (control y comunicación separados) y entradas con pull-up interna. Se programa con Arduino IDE, como pide la guía del curso.</td></tr>
+  <tr><td><b>Flotador P35</b></td><td>Contacto seco: no necesita alimentación ni calibración y no le afectan la turbidez ni la espuma, que sí afectan a un sensor ultrasónico. Basta una entrada digital y GND. No tiene polaridad.</td></tr>
+  <tr><td><b>Relé SRA-05VDC-CL</b></td><td>SPDT con bobina de 5 V y 42 Ω (~120 mA). Separa los 220 V de la lógica de 3,3 V. Como un pin del ESP32 no entrega esa corriente, la PCB lo activa con un transistor y un diodo de protección. El equipo verificó que soporta los 220 V de la bomba.</td></tr>
+  <tr><td><b>Bomba 220 V</b></td><td>Funciona directo con la red; el relé solo interrumpe la fase.</td></tr>
+  <tr><td><b>Cargador USB 5 V</b></td><td>Alimenta el ESP32 y la bobina del relé.</td></tr>
+</table>
+<h3>4.2 Conexiones</h3>
+<figure><img src="../../hardware/esquemas/diagrama_conexiones.svg" style="max-height:95mm"><figcaption>Figura 3. Diagrama de conexiones: baja tensión a la izquierda y 220 V a la derecha.</figcaption></figure>
+<table>
+  <tr><th>Conexión</th><th>Pin / borne</th><th>Cable</th></tr>
+  <tr><td>Flotador P35</td><td>GPIO 27 y GND</td><td>Morado y verde</td></tr>
+  <tr><td>Relé</td><td>VCC ← 5 V (VIN) · GND · IN ← GPIO 26 (activo en LOW)</td><td>—</td></tr>
+  <tr><td>Bomba</td><td>Fase → COM del relé · NO → fase de la bomba · neutro y tierra directos</td><td>Amarillo</td></tr>
+</table>
+<h3>4.3 Montaje, precauciones y reparación</h3>
+<ul>
+  <li>Toda conexión de 220 V se hace con la energía cortada, separada físicamente de la lógica.</li>
+  <li>La electrónica queda dentro de la caja con techo; solo el flotador está en contacto con el agua.</li>
+  <li><b>Diseño para la reparación:</b> placa atornillada con 4 tornillos M3; techo que sale deslizándolo sin herramientas; cables de potencia en borneras (sin soldar); tubo que se desenrosca de la caja; tramos que se separan quitando los pasadores; sensor enroscado en la punta; código de colores (morado y verde para baja tensión, amarillo para 220 V).</li>
+</ul>
+<h3>4.4 Lista de materiales</h3>
+<table>
+  <tr><th>Componente</th><th>Cant.</th><th>Costo CLP</th><th>Origen</th></tr>
+  <tr><td>Placa PCB con ESP32 y relés</td><td>1</td><td>0</td><td>Fabricada por la universidad</td></tr>
+  <tr><td>Flotador P35</td><td>1</td><td>6.000</td><td>Comprado por el equipo</td></tr>
+  <tr><td>Bomba 220 V</td><td>1</td><td>6.000</td><td>Comprada por el equipo</td></tr>
+  <tr><td>Impresión 3D del encapsulado (7 piezas)</td><td>1</td><td>0</td><td>Impresa por la universidad</td></tr>
+  <tr><td>Cargador, cables, tornillos M3 y pasadores</td><td>—</td><td>0</td><td>Sin costo para el equipo</td></tr>
+  <tr><th>Total</th><th></th><th>12.000</th><th></th></tr>
+</table>
+
+<h2 class="salto">5. Diseño 3D</h2>
+<p>El encapsulado se modeló en <b>Autodesk Fusion 360</b> en el mismo archivo que la PCB, por lo que el gemelo digital incluye la placa con sus volúmenes reales. Como la impresora disponible imprime hasta 10 cm por eje, el diseño se dividió en <b>7 piezas</b> con uniones para armarlas después de imprimir.</p>
+<div class="fila">
+  <figure><img src="../../diseno_3d/renders/render_03_interior.png" style="max-height:78mm"><figcaption>Figura 4. Interior: placa, relés, borneras, entradas de cables y ventana USB.</figcaption></figure>
+  <figure><img src="../../diseno_3d/renders/render_04_explosionado.png" style="max-height:78mm"><figcaption>Figura 5. Vista explosionada de las piezas.</figcaption></figure>
+</div>
+<table>
+  <tr><th>Pieza</th><th>Medidas (mm)</th><th>Unión</th></tr>
+  <tr><td>01 Caja base</td><td>100 × 64 × 46</td><td>Rosca hembra M36x2 abajo; riel del techo arriba</td></tr>
+  <tr><td>02 y 03 Techo A y B</td><td>74 × 74 × 46 · 89 × 74 × 30</td><td>Lengüeta de 30 mm, 2 tornillos M3 y adhesivo</td></tr>
+  <tr><td>04 Acople del tubo</td><td>44 × 44 × 47,5</td><td>Rosca macho M36x2; casquillo de 15 mm</td></tr>
+  <tr><td>05 Tramo del tubo 1</td><td>Ø34 × 85</td><td>Pegado en el casquillo (holgura 0,2 mm)</td></tr>
+  <tr><td>06 y 07 Tubos 2 y 3</td><td>Ø29 × 100 · Ø21 × 100</td><td>Telescópicos, con pasadores de 4 mm; rosca M10x1.5 en la punta</td></tr>
+</table>
+<h3>Funcionalidades del encapsulado</h3>
+<ul>
+  <li><b>Techo de una sola agua</b> (15°) con <b>alero de 45 mm</b> que protege las entradas de cables de la lluvia.</li>
+  <li><b>Techo deslizable</b> sobre un riel (ganchos en L con 0,3 mm de holgura), con tope; deja la placa a la vista sin herramientas.</li>
+  <li><b>Dos entradas cuadradas</b> de 12 × 12 mm, una por relé, y una <b>ventana USB</b> de 13 × 8 mm.</li>
+  <li><b>Tubo telescópico</b> de tres tramos de 10 cm, regulable con pasadores cada 20 mm, que lleva el cable del sensor por dentro hasta el estanque; los topes internos impiden que los tramos se salgan.</li>
+</ul>
+<figure><img src="../../diseno_3d/planos/lamina_1_caja_base.svg" style="max-height:112mm"><figcaption>Figura 6. Lámina 1 de los planos con cotas (caja base). Las láminas del techo y del tubo están en el repositorio.</figcaption></figure>
+<p>La Figura 1 muestra las piezas impresas por la universidad armadas: el techo encaja en el riel, la rosca M36x2 une la caja con el tubo y los tramos telescópicos deslizan como en el modelo.</p>
+
+<h2 class="salto">6. Testing</h2>
+<h3>6.1 Prueba de puesta en marcha (22-11-2026)</h3>
+<p>Con la placa conectada al WiFi y a Railway, se movió el flotador a mano durante unos 6 minutos y se revisaron el monitor serie y la página publicada. La base de datos registró <b>34 lecturas</b> (13 de nivel, 8 de bomba y 13 de estado), todas con respuesta <b>201</b>.</p>
+<figure><img src="../../testing/evidencias/grafico_prueba_2026-11-22.svg" style="max-height:68mm"><figcaption>Figura 7. Nivel y bomba durante la prueba, graficados con los datos reales de la base.</figcaption></figure>
+<table>
+  <tr><th>Verificación</th><th>Resultado</th></tr>
+  <tr><td>El ESP32 envía a Railway y los datos quedan en PostgreSQL</td><td>✔ 34 filas guardadas</td></tr>
+  <tr><td>La bomba espera antes de encender</td><td>✔ Pasó a <i>Esperando arranque</i> y encendió unos 10 s después</td></tr>
+  <tr><td>La bomba se apaga al marcar lleno</td><td>✔ Se apagó alrededor de 1 s después de que el flotador marcó LLENO</td></tr>
+  <tr><td>Descanso de 60 s</td><td>✔ El siguiente encendido fue recién minutos después</td></tr>
+  <tr><td>Oscilaciones del flotador no encienden la bomba</td><td>✔ Tres cambios rápidos de nivel durante el descanso no la encendieron</td></tr>
+  <tr><td>Aviso cuando la placa deja de enviar</td><td>✔ La página mostró SIN SEÑAL al desconectarla</td></tr>
+</table>
+<h3>6.2 Modos de falla encontrados</h3>
+<table>
+  <tr><th>Falla</th><th>Causa</th><th>Acción</th></tr>
+  <tr><td>La placa no se conectaba al WiFi</td><td>Nombre de red que no existía en ese lugar</td><td>Lista de varias redes (WiFiMulti)</td></tr>
+  <tr><td>Error al cargar el código</td><td>Placa equivocada en el IDE (ESP32-C3/S2)</td><td>Usar siempre <i>ESP32 Dev Module</i></td></tr>
+  <tr><td>El servidor no conectaba a la base</td><td>URI de Aiven copiada sin la contraseña</td><td>Se corrigió la variable en Railway</td></tr>
+  <tr><td>Horas de la base algo desfasadas</td><td>Se registra la hora de llegada (~1,2 s por envío)</td><td>Documentado en el análisis</td></tr>
+</table>
+<h3>6.3 Pruebas formales y validación</h3>
+<p>El protocolo define tres pruebas formales: <b>A</b> (20 ciclos de llenado y corte con agua real), <b>B</b> (llegada de datos y recuperación tras cortar el WiFi) y <b>C</b> (tiempo entre un cambio del flotador y su aparición en la página). <span class="pend">Estas pruebas aún no se ejecutan.</span> La puesta en marcha entrega evidencia preliminar de que el sistema responde al problema: la bomba se apaga sola al llenarse, lo que evita el rebalse, se enciende sola al vaciarse y el estado se puede ver a distancia. Su limitación es que se movió el flotador a mano durante pocos minutos, sin un llenado real.</p>
+
+<h2>7. Iteraciones</h2>
+<table>
+  <tr><th></th><th>Iteración 1</th><th>Iteración 2</th><th>Iteración 3</th></tr>
+  <tr><td><b>Fecha</b></td><td>hasta 16-11-2026</td><td>16-11-2026</td><td>21–22-11-2026</td></tr>
+  <tr><td><b>Datos</b></td><td>Solo monitor serie por cable</td><td>Página local (mismo WiFi)</td><td>Página local y página pública con historial</td></tr>
+  <tr><td><b>Comunicación</b></td><td>—</td><td>Una red WiFi</td><td>Varias redes; envío en otro núcleo con cola y reintentos</td></tr>
+  <tr><td><b>Encapsulado</b></td><td>Caja con tapa plana</td><td>Techo a dos aguas → techo de una sola agua con alero</td><td>7 piezas de 10 cm o menos, impresas</td></tr>
+</table>
+<div class="fila">
+  <figure><img src="../../iteraciones/iteracion_1/render_v1_caja_tapa.png" style="max-height:52mm"><figcaption>Versión 1</figcaption></figure>
+  <figure><img src="../../iteraciones/iteracion_2/render_v2_techo_dos_aguas.png" style="max-height:52mm"><figcaption>Versión 2</figcaption></figure>
+  <figure><img src="../../iteraciones/iteracion_3/render_v3_techo_media_agua.png" style="max-height:52mm"><figcaption>Versión 3</figcaption></figure>
+</div>
+<h3>Lecciones aprendidas</h3>
+<ol>
+  <li><b>Separar el control de la comunicación:</b> una falla de internet no debe retrasar el corte de la bomba.</li>
+  <li><b>Diseñar para la máquina disponible:</b> el límite de 10 cm obligó a pensar las uniones desde el principio.</li>
+  <li><b>El techo es parte de la función:</b> proteger las entradas de cables fue tan importante como proteger la placa.</li>
+  <li><b>La configuración falla más que el código:</b> placa equivocada, WiFi y variables de la nube fueron las fallas reales.</li>
+  <li><b>No subir claves:</b> mantenerlas fuera del repositorio desde el inicio evita tener que cambiarlas.</li>
+</ol>
+
+<h2>8. Conclusiones y trabajo futuro</h2>
+<p>Se diseñó y construyó un sistema que <b>automatiza el llenado de un estanque con agua de pozo</b>: la bomba se apaga sola al llenarse, lo que evita los rebalses que hoy desperdician agua en Culiprán y San Pedro; se enciende sola al vaciarse, con protecciones para el motor; y la familia puede revisar el estado desde cualquier lugar. El sistema integra software (firmware, servidor, base de datos y página pública), hardware de bajo costo (<b>$12.000 CLP</b> pagados por el equipo) y un encapsulado impreso pensado para exterior y para ser reparado.</p>
+<p><b>Limitaciones:</b> el flotador indica solo lleno o vacío, no litros; falta ejecutar las pruebas formales con agua real; y el plan de prueba de Railway dura 30 días.</p>
+<p><b>Trabajo futuro:</b> ejecutar las pruebas A a C en un estanque real; agregar un sensor de nivel continuo para conocer los litros; avisos al celular cuando el estanque se vacía o la placa pierde señal; imprimir en PETG para mayor resistencia al sol y la humedad; y probar el equipo con vecinos del sector.</p>
+
+<h2>9. Referencias y declaración de uso de IA</h2>
+<ul>
+  <li>Méndez, F. <i>Guía: ESP32 conectado a una base de datos en la nube — Aiven (PostgreSQL) + Railway + GitHub</i>. TEI201, UAI. Repositorio de ejemplo: github.com/ferjomendez/esp32-railway-demo</li>
+  <li>Espressif Systems. <i>ESP32 Series Datasheet</i> y documentación de Arduino-ESP32 (core 3.3.12).</li>
+  <li>Ningbo Songle Relay. <i>SRA-05VDC-CL datasheet</i> (LCSC C99666).</li>
+  <li>Librerías: Express 4, node-postgres 8, dotenv 16, ArduinoJson 7.4.3, Chart.js 4.4.1.</li>
+  <li>Servicios: Railway, Aiven (PostgreSQL 18, plan Free), GitHub.</li>
+  <li>Naciones Unidas. Objetivo de Desarrollo Sostenible 6: Agua limpia y saneamiento.</li>
+</ul>
+<p>El detalle completo de fuentes y versiones está en <code>FUENTES.md</code> del repositorio.</p>
+<div class="caja"><b>Declaración de uso de IA.</b> Se usó Claude (Anthropic), mediante Claude Code, como asistente para modelar el encapsulado en Fusion 360, escribir y depurar el firmware, adaptar el servidor de la guía, configurar Railway y Aiven, y redactar borradores de la documentación. El equipo definió el problema y los requisitos, construyó y probó el prototipo real, creó las cuentas, aportó los datos reales (contexto, precios, fotos, colores de cables) y revisó los textos. Todo el código se probó en el hardware real y en la página publicada.</div>
+
+</body>
+</html>
