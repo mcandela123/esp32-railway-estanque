@@ -94,11 +94,10 @@ Se usó **Claude (Anthropic), mediante Claude Code**, como asistente durante el 
 
 | Parte del proyecto | Para qué se usó la IA | Qué hizo el equipo |
 |---|---|---|
-| Diseño 3D | Modelar en Fusion 360 el encapsulado (caja, techo con riel, tubo telescópico de 3 tramos, roscas) y dividirlo en piezas de 10 cm o menos para la impresora | Definió los requisitos (estanque de 2000 L, tubo de 3 tramos de 10 cm, techo para lluvia, entradas por relé, rosca del sensor), revisó y pidió cada cambio |
+| Diseño 3D |detallar en Fusion 360 el encapsulado (caja, techo con riel, tubo telescópico de 3 tramos, roscas) y dividirlo en piezas de 10 cm o menos para la impresora | Definió los requisitos (estanque de 2000 L, tubo de 3 tramos de 10 cm, techo para lluvia, entradas por relé, rosca del sensor), revisó y pidió cada cambio |
 | Firmware ESP32 | Escribir y mejorar el código: página local, envío a Railway en una tarea aparte, varias redes WiFi | Escribió la primera versión del control con flotador y relé, probó en la placa real, ajustó WiFi y conexiones |
 | Servidor y página | Adaptar el código de la guía al proyecto (sensores, validaciones, página del estanque) | Creó las cuentas de GitHub, Aiven y Railway, configuró las variables y verificó la página publicada |
 | Documentación | Redactar borradores de README, FUENTES, protocolo de pruebas e iteraciones a partir de los datos reales del proyecto | Completa los datos que faltan (equipo, ODS, precios, fotos, pruebas) y revisa los textos |
 
 Todo el código generado con IA se probó en el hardware real y en la página publicada.
-Las cifras de este repositorio salen de mediciones o datos reales. Donde todavía falta
-un dato, el texto dice **POR COMPLETAR** en vez de inventarlo.
+Las cifras de este repositorio salen de mediciones o datos reales. 
