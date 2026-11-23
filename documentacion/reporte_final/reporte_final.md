@@ -9,8 +9,21 @@ TEI201 Introducción al Diseño en Ingeniería · Universidad Adolfo Ibáñez ·
 
 ## 1. Problema, contexto y ODS
 
-**POR COMPLETAR:** ODS elegido, contexto y problema concreto. Por ejemplo: quién usa el
-estanque de 2000 L, qué pasa hoy cuando rebalsa o se vacía y cuánta agua o tiempo se pierde.
+**ODS 6: Agua limpia y saneamiento**, metas 6.4 (uso eficiente del agua) y 6.1 (acceso al agua).
+
+En los sectores rurales de **Culiprán y San Pedro**, en la provincia de **Melipilla**
+(Región Metropolitana), no existe red de agua potable por tuberías. Cada hogar saca agua de
+un **pozo** con una bomba y la almacena en un **estanque** (en este proyecto, de 2000 L).
+
+La bomba se maneja a mano. Si nadie la apaga a tiempo, el estanque **rebalsa**, problema
+que comparten varios vecinos, y se **desperdicia agua** de un pozo que es la única fuente
+disponible. Si nadie la enciende, el estanque se queda vacío.
+
+**Necesidad:** que la bomba se apague sola cuando el estanque se llena, que se encienda
+sola cuando se vacía y que la familia pueda revisar el estado a distancia.
+
+**POR COMPLETAR:** datos medidos o testimonios de los vecinos (cada cuánto rebalsa, cuánto
+tiempo queda la bomba encendida de más, cuánta agua se pierde).
 
 ## 2. Solución
 

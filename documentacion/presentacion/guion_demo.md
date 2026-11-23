@@ -4,7 +4,7 @@ Reparto sugerido según el rol de cada integrante (ajustar si quieren).
 
 | Minuto | Lámina / acción | Quién |
 |---|---|---|
-| 0:00 – 1:00 | Problema y ODS: estanque de 2000 L que rebalsa o se queda vacío | Mateo |
+| 0:00 – 1:00 | Problema y ODS 6: en Culiprán y San Pedro (Melipilla) no hay agua potable por tuberías; el agua sale de pozo, se guarda en estanques que rebalsan y se pierde | Mateo |
 | 1:00 – 2:00 | Solución y arquitectura (ESP32 → Railway → Aiven) | Claudio |
 | 2:00 – 4:00 | **Demo en vivo:** mover el flotador, ver cómo la bomba (o el LED del GPIO 2) enciende tras 10 s, y mostrar la página pública en el celular | Mateo y Claudio |
 | 4:00 – 5:00 | Software: máquina de estados, envío en otro núcleo, API con clave | Claudio |

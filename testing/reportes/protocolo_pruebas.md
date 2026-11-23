@@ -45,7 +45,7 @@
 | Campo | Detalle |
 |---|---|
 | Objetivo | Verificar que una persona sin conocimientos técnicos entiende la página |
-| Participantes | **Mínimo 5 personas reales** (nombre o iniciales, edad aproximada y relación con el problema) |
+| Participantes | **Mínimo 5 personas reales** (nombre o iniciales, edad aproximada y relación con el problema), idealmente vecinos de Culiprán o San Pedro que usan estanque con agua de pozo |
 | Procedimiento | 1. Mostrar la página publicada sin explicar nada. 2. Preguntar: ¿el estanque tiene agua?, ¿la bomba está funcionando?, ¿el equipo está conectado? 3. Medir cuánto tarda en responder. 4. Preguntar qué cambiaría |
 | Criterio de éxito | Al menos 4 de 5 personas responden bien las 3 preguntas en menos de 30 s |
 | Evidencia | Foto o video de cada prueba (con permiso), planilla de respuestas y tiempos, lista de comentarios |

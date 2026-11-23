@@ -52,8 +52,14 @@ Serie y la página publicada.
 
 ## 3. Validación contra el problema
 
-**POR COMPLETAR** con el ODS y el problema definidos por el equipo. Preguntas a responder con evidencia:
+**Problema (ODS 6):** en Culiprán y San Pedro (Melipilla) el agua se saca de pozo y se
+guarda en estanques que rebalsan porque la bomba se apaga a mano, y se desperdicia agua.
 
-- ¿El estanque deja de rebalsar? (prueba A: la bomba se apaga al llenarse)
-- ¿Se puede saber a distancia si hay agua? (pruebas B y C)
-- ¿Lo entiende una persona sin conocimientos técnicos? (prueba D)
+| Pregunta | Prueba | Evidencia hasta ahora |
+|---|---|---|
+| ¿La bomba se apaga sola cuando el estanque se llena (no rebalsa)? | A | En la puesta en marcha, la bomba se apagó alrededor de 1 s después de que el flotador marcó LLENO (filas 14 a 16). Falta repetirlo 20 veces con agua real |
+| ¿Se enciende sola cuando el estanque se vacía? | A | Encendió unos 10 s después de marcar VACÍO, como estaba programado (filas 8 a 13) |
+| ¿La familia puede saber a distancia si hay agua? | B y C | La página pública mostró el nivel y la alerta SIN SEÑAL. Faltan las mediciones de tiempos |
+| ¿Lo entiende una persona sin conocimientos técnicos? | D | **POR COMPLETAR** (al menos 5 personas, idealmente vecinos de Culiprán o San Pedro) |
+
+**POR COMPLETAR:** conclusión final cuando terminen las pruebas A a D.

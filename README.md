@@ -16,12 +16,19 @@ Proyecto de **TEI201 Introducción al Diseño en Ingeniería**, Universidad Adol
 
 ## ODS y problema
 
-**ODS:** **POR COMPLETAR** (por ejemplo, ODS 6: Agua limpia y saneamiento).
+**ODS 6: Agua limpia y saneamiento**, en particular la meta **6.4** (aumentar el uso
+eficiente del agua) y la **6.1** (acceso al agua para las familias).
 
-**Problema:** un estanque de 2000 litros se llena con una bomba que hay que encender y
-apagar a mano. Si nadie la apaga, el estanque rebalsa y se pierde agua; si nadie la
-enciende, el estanque queda vacío. **POR COMPLETAR:** contexto real (dónde está el
-estanque, quién lo usa y cuánta agua o tiempo se pierde).
+**Contexto:** en los sectores rurales de **Culiprán y San Pedro**, en la provincia de
+**Melipilla** (Región Metropolitana, Chile), no hay red de agua potable por tuberías.
+Las familias sacan agua de **pozo** con una bomba y la guardan en un **estanque**.
+
+**Problema:** la bomba se enciende y se apaga a mano. Cuando nadie la apaga a tiempo,
+**el estanque rebalsa**, algo que les pasa a varios vecinos, y **se desperdicia mucha agua**
+de un pozo que es la única fuente del hogar. Si nadie la enciende, el estanque se queda vacío.
+
+**Nuestra respuesta:** automatizar la bomba con un flotador, para que se apague sola al
+llenarse y se encienda sola al vaciarse, y permitir revisar el estanque a distancia.
 
 ## Descripción
 
@@ -47,7 +54,7 @@ ESP32 (flotador P35 + relé) --POST HTTPS--> Railway (Express + página) --SQL c
 |---|---|
 | Versión | Iteración 3 (22-11-2026) |
 | Funciona | Control de la bomba, página local, envío a Railway, base de datos y dashboard público |
-| Falta | ODS, fotos del cableado y de la instalación, precios del cargador y cables, pruebas formales con 5 usuarios, reporte y presentación |
+| Falta | Fotos del cableado y de la instalación, precios del cargador y cables, pruebas formales con 5 usuarios, reporte y presentación |
 
 ## Resultados clave
 
@@ -128,7 +135,7 @@ Guía completa: [`software/README.md`](software/README.md).
 - [ ] Pruebas formales con datos reales y 5 usuarios
 - [x] Iteraciones con fechas reales
 - [x] Integrantes y roles en este README
-- [ ] ODS y contexto del problema
+- [x] ODS y contexto del problema
 - [ ] Reporte (máximo 15 páginas) y presentación (10 min) en `documentacion/`
 - [ ] Commits de todos los integrantes
 - [ ] Todos los enlaces probados en una ventana de incógnito
