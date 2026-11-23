@@ -11,7 +11,7 @@ componente `Encapsulado`), así que el gemelo 3D incluye la placa con sus volúm
 |---|---|---|
 | [`fusion360/`](fusion360/) | `estanque_encapsulado.f3d`: ensamble completo con la PCB y las 7 piezas | ✅ Exportado |
 | [`stl/`](stl/) | Las 7 piezas listas para imprimir (STL en mm) | ✅ Listo |
-| [`renders/`](renders/) | Exterior, exterior en alta resolución e interior | ✅ 3 renders (falta el explosionado) |
+| [`renders/`](renders/) | Exterior, exterior en alta resolución, interior y explosionado | ✅ 4 renders |
 | [`planos/`](planos/) | Vistas ortogonales y tabla de cotas | ✅ Vistas · **POR COMPLETAR** plano con cotas dibujadas |
 
 ## Piezas
@@ -72,5 +72,4 @@ Medidas obtenidas de los STL exportados.
 
 1. Probar que `fusion360/estanque_encapsulado.f3d` abre en otro computador.
 2. Plano con cotas dibujadas, escala y cajetín (entorno *Drawing*) → `planos/`.
-3. Render **explosionado** → `renders/`.
-4. Medir con pie de metro la placa real y comparar con el modelo.
+3. Medir con pie de metro la placa real y comparar con el modelo.
