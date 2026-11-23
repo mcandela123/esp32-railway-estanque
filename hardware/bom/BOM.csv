@@ -1,13 +1,11 @@
 Ref,Componente,Cantidad,Costo unitario CLP,Subtotal CLP,Funcion,Enlace de compra
-U1,ESP32 Dev Module (ESP32-WROOM),1,POR COMPLETAR,POR COMPLETAR,Microcontrolador: control y WiFi,POR COMPLETAR
+U1,Placa PCB con ESP32 y reles SRA-05VDC-CL,1,0,0,Microcontrolador y reles; fabricada por la universidad,Provista por la universidad
 S1,Flotador P35,1,POR COMPLETAR,POR COMPLETAR,Detecta si el estanque esta lleno o vacio,POR COMPLETAR
-K1,Modulo rele 5 V (o PCB con rele SRA-05VDC-CL),1,POR COMPLETAR,POR COMPLETAR,Enciende y apaga la bomba de 220 V,POR COMPLETAR
-M1,Bomba de agua 220 V,1,POR COMPLETAR,POR COMPLETAR,Llena el estanque,POR COMPLETAR
+M1,Bomba de agua 220 V,1,6000,6000,Llena el estanque,POR COMPLETAR
+P1,Impresion 3D del encapsulado (7 piezas),1,0,0,Caja techo y tubo telescopico; impreso por la universidad,Provista por la universidad
 PS1,Cargador USB 5 V 1 A o mas,1,POR COMPLETAR,POR COMPLETAR,Alimenta el ESP32 y el rele,POR COMPLETAR
 W1,Cable micro USB de datos,1,POR COMPLETAR,POR COMPLETAR,Alimentacion y programacion,POR COMPLETAR
-W2,Cables Dupont / cable de senal,1,POR COMPLETAR,POR COMPLETAR,Conexiones de baja tension,POR COMPLETAR
-W3,Cable electrico 220 V,1,POR COMPLETAR,POR COMPLETAR,Conexion rele - bomba,POR COMPLETAR
-H1,Tornillos M3,4,POR COMPLETAR,POR COMPLETAR,Fijar la placa a los postes de la caja,POR COMPLETAR
-H2,Prensaestopas o pasacables,2,POR COMPLETAR,POR COMPLETAR,Sellar las entradas de cables de los reles,POR COMPLETAR
-H3,Pasador de 4 mm,2,POR COMPLETAR,POR COMPLETAR,Fijar la altura del tubo telescopico,POR COMPLETAR
-P1,Filamento para impresion 3D (caja techo y tubos),1,POR COMPLETAR,POR COMPLETAR,Encapsulado,POR COMPLETAR
+W2,Cables morado y verde (senal del flotador),1,POR COMPLETAR,POR COMPLETAR,Conexion flotador - ESP32,POR COMPLETAR
+W3,Cable amarillo 220 V (bomba),1,POR COMPLETAR,POR COMPLETAR,Conexion rele - bomba,POR COMPLETAR
+H1,Tornillos M3,6,POR COMPLETAR,POR COMPLETAR,4 para la placa y 2 para unir los techos,POR COMPLETAR
+H2,Pasador de 4 mm,2,POR COMPLETAR,POR COMPLETAR,Fijar la altura del tubo telescopico,POR COMPLETAR

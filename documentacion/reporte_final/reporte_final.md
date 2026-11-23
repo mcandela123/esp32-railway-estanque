@@ -2,7 +2,7 @@
 
 TEI201 Introducción al Diseño en Ingeniería · Universidad Adolfo Ibáñez · 2026
 
-**Equipo:** **POR COMPLETAR** (integrantes y roles)
+**Equipo:** Claudio Martínez (código), Diego Poupin (diseño 3D) y Mateo Candela (electrónica y testing)
 
 > Borrador. Máximo 15 páginas al exportar a PDF. Las secciones marcadas
 > **POR COMPLETAR** las escribe el equipo con sus datos reales.

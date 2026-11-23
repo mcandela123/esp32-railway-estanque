@@ -72,7 +72,7 @@ Herramientas: Arduino IDE 2.3.10, Autodesk Fusion 360 (diseño 3D y PCB), Git y 
 | ESP32 (Espressif) | Documentación del core Arduino-ESP32 | https://docs.espressif.com/projects/arduino-esp32/ |
 | Relé SRA-05VDC-CL (Ningbo Songle), usado en la PCB | Datasheet del relé (LCSC C99666). SPDT, bobina de 5 V y 42 Ω | https://datasheet.lcsc.com/szlcsc/Ningbo-Songle-Relay-SRA-05VDC-CL_C99666.pdf · ficha: https://www.lcsc.com/product-detail/C99666.html |
 | Flotador P35 | Ficha técnica del flotador | **POR COMPLETAR** (enlace del vendedor o ficha) |
-| Bomba de agua | Ficha técnica (tensión, potencia, caudal) | **POR COMPLETAR** |
+| Bomba de agua 220 V ($6.000 CLP) | Ficha técnica (potencia, caudal) | **POR COMPLETAR** (foto de la etiqueta o enlace de la tienda) |
 | Sensor de luz TEMT6000 (en la PCB) | Datasheet Vishay TEMT6000 | **POR COMPLETAR** (si se usa) |
 
 ---
@@ -83,7 +83,8 @@ Herramientas: Arduino IDE 2.3.10, Autodesk Fusion 360 (diseño 3D y PCB), Git y 
 |---|---|---|---|
 | Modelo 3D de la PCB y sus componentes (diseño `ESP32_PCB`, cabeceras de pines exportadas por *Open CASCADE STEP translator*) | **POR COMPLETAR**: indicar si la PCB la diseñó el equipo o se importó un STEP de terceros, y de dónde | Referencia de volúmenes reales dentro del encapsulado | — |
 
-El encapsulado (caja, techo y tubos) fue modelado por el equipo en Fusion 360.
+El encapsulado (caja, techo y tubos) fue diseñado por el equipo (Diego Poupin) en Fusion 360
+con ayuda de IA (ver sección 6), y lo imprimió la universidad.
 
 ---
 

@@ -8,7 +8,11 @@
 | [`bom/`](bom/) | Lista de materiales con precios y enlaces |
 | [`fotos/`](fotos/) | Fotos reales del prototipo |
 
-![Diagrama de conexiones](esquemas/diagrama_conexiones.svg)
+| Prototipo impreso | Diagrama de conexiones |
+|---|---|
+| ![Prototipo](fotos/foto_01_encapsulado_frontal.jpg) | ![Diagrama de conexiones](esquemas/diagrama_conexiones.svg) |
+
+**Integrantes a cargo:** Mateo Candela (electrónica y testing) y Claudio Martínez (firmware).
 
 ## Componentes principales y por qué se eligieron
 
@@ -16,8 +20,8 @@
 |---|---|---|
 | **ESP32 Dev Module** | Leer el flotador, controlar el relé, publicar la página local y enviar datos a Railway | Tiene WiFi integrado (2,4 GHz) para enviar por HTTPS, dos núcleos (uno controla la bomba y el otro envía a la nube) y pines de 3,3 V con pull-up interna. Se programa con Arduino IDE, como pide la guía del curso |
 | **Flotador P35** | Detectar si el estanque está lleno o vacío | Es un contacto seco: no necesita alimentación ni calibración y no se ve afectado por la turbidez o la espuma, que sí afectan a un sensor ultrasónico. Basta con una entrada digital y GND. Como no mide litros, la decisión es todo o nada |
-| **Relé 5 V (activo en LOW)**: SRA-05VDC-CL en la PCB ([datasheet](https://datasheet.lcsc.com/szlcsc/Ningbo-Songle-Relay-SRA-05VDC-CL_C99666.pdf)) | Encender y apagar la bomba de 220 V | Separa galvánicamente los 220 V de la lógica de 3,3 V. Es SPDT (COM, NO, NC). La bobina es de 5 V y 42 Ω, o sea unos 120 mA: más de lo que entrega un pin del ESP32 (unos 40 mA como máximo). Por eso la PCB lo activa con un transistor (Q4/Q5, SOT-23) y un diodo de protección. **POR COMPLETAR:** confirmar en el datasheet la corriente de contacto a 250 VCA y que supere la corriente nominal de la bomba |
-| **Bomba de agua 220 V** | Llenar el estanque de 2000 L | **POR COMPLETAR:** potencia, corriente y caudal reales |
+| **Relé 5 V (activo en LOW)**: SRA-05VDC-CL en la PCB ([datasheet](https://datasheet.lcsc.com/szlcsc/Ningbo-Songle-Relay-SRA-05VDC-CL_C99666.pdf)) | Encender y apagar la bomba de 220 V | Separa galvánicamente los 220 V de la lógica de 3,3 V. Es SPDT (COM, NO, NC). La bobina es de 5 V y 42 Ω, o sea unos 120 mA: más de lo que entrega un pin del ESP32 (unos 40 mA como máximo). Por eso la PCB lo activa con un transistor (Q4/Q5, SOT-23) y un diodo de protección. El equipo verificó que los contactos del relé soportan los 220 V de la bomba |
+| **Bomba de agua 220 V** | Llenar el estanque de 2000 L | Bomba económica ($6.000 CLP) que funciona directo con la red de 220 V, así que el relé solo tiene que cortar la fase. **POR COMPLETAR:** potencia y caudal de la placa de la bomba |
 | **Cargador USB 5 V** | Alimentar todo el circuito de baja tensión | Un cargador común de celular de 1 A o más alcanza para el ESP32 con WiFi y la bobina del relé |
 | **Encapsulado impreso en 3D** | Proteger la electrónica de la lluvia y llevar el flotador al estanque | Ver [`../diseno_3d/`](../diseno_3d/) |
 
@@ -81,4 +85,5 @@ Detalle con colores de cable: [`esquemas/detalle_conexiones.md`](esquemas/detall
 - El tubo se **desenrosca** de la caja (M36x2) y sus tramos se separan quitando los pasadores.
 - El sensor se **enrosca** en la punta del tubo (M10x1.5).
 - Las redes WiFi, los pines y los tiempos se cambian en un solo lugar del código (secciones 1 a 3).
-- **POR COMPLETAR:** código de colores de cables por función.
+- Código de colores: **morado y verde** para el flotador P35 (baja tensión) y **amarillo**
+  para la bomba (220 V). Así se distingue a simple vista qué cable lleva tensión de red.

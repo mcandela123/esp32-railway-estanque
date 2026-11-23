@@ -3,7 +3,11 @@
 Modelado en **Autodesk Fusion 360**, en el mismo archivo que la PCB (`ESP32_PCB`,
 componente `Encapsulado`), así que el gemelo 3D incluye la placa con sus volúmenes reales.
 
-![Render del encapsulado](renders/render_01_iso_v3_final.png)
+**Responsable:** Diego Poupin.
+
+| Modelo en Fusion 360 | Pieza impresa real |
+|---|---|
+| ![Render del encapsulado](renders/render_02_exterior_alta.png) | ![Prototipo impreso](../hardware/fotos/foto_01_encapsulado_frontal.jpg) |
 
 ## Carpetas
 
@@ -48,7 +52,7 @@ Medidas obtenidas de los STL exportados.
 | Regulación de altura | Agujeros de 4,2 mm cada 20 mm (5 en el tubo 2, 4 en el tubo 3) |
 | Roscas | M36x2 caja–tubo; M10x1.5 tubo–sensor (modeladas, tolerancia 6H/6g) |
 | Software / unidades | Fusion 360, mm |
-| Material sugerido | PETG (resiste humedad y sol mejor que PLA). **POR COMPLETAR**: material real usado |
+| Fabricación | Impreso por la universidad en filamento gris (ver fotos). **POR COMPLETAR**: tipo de material (PLA o PETG). Se recomienda PETG para exterior |
 
 ## Funcionalidades del encapsulado
 
