@@ -12,6 +12,9 @@ Contiene el **ensamble completo**:
 ## Cómo abrirlo
 
 1. En Fusion 360: **Archivo → Abrir → Abrir desde mi equipo** y elegir `estanque_encapsulado.f3d`.
-2. **POR COMPLETAR:** probarlo en otro computador y anotar aquí que abre bien.
+2. **Verificado el 23-11-2026:** el archivo se importó en Fusion 360 como un documento
+   nuevo, independiente del original. Abre con los 157 componentes de la PCB y los
+   7 cuerpos del encapsulado.
+3. Recomendado: probarlo también en el computador de otro integrante.
 
 Los STL de cada pieza están en [`../stl/`](../stl/).

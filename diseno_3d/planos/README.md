@@ -1,30 +1,25 @@
 # Planos técnicos
 
-## Vistas ortogonales (exportadas desde Fusion 360, 22-11-2026)
+Planos con cotas dibujados con las medidas exactas del modelo de Fusion 360
+(23-11-2026). Unidades: mm. Tolerancia general: ±0,2 mm.
 
-Hoja completa con notas: [`vistas_ortogonales/view_sheet.html`](vistas_ortogonales/view_sheet.html)
+| Lámina | Pieza(s) | Vistas |
+|---|---|---|
+| [`lamina_1_caja_base.svg`](lamina_1_caja_base.svg) | 01 Caja base | Superior, frontal, lateral izquierda (entradas de cables) y lateral derecha (ventana USB) |
+| [`lamina_2_techo.svg`](lamina_2_techo.svg) | 02 Techo A y 03 Techo B | Superior (unión, lengüeta, tornillos, alero) y corte transversal (pendiente y ganchos del riel) |
+| [`lamina_3_tubo.svg`](lamina_3_tubo.svg) | 04 Acople, 05 Tramo, 06 Tubo 2, 07 Tubo 3 | Elevación de cada pieza con diámetros, largos, roscas y agujeros de pasador |
+
+![Lámina 1](lamina_1_caja_base.svg)
+![Lámina 2](lamina_2_techo.svg)
+![Lámina 3](lamina_3_tubo.svg)
+
+## Vistas ortogonales del ensamble (exportadas desde Fusion 360)
+
+Hoja completa: [`vistas_ortogonales/view_sheet.html`](vistas_ortogonales/view_sheet.html)
 (se abre en el navegador; con *Imprimir → Guardar como PDF* queda en PDF).
 
-| Vista | Archivo |
-|---|---|
-| Isométrica | ![iso](vistas_ortogonales/iso.png) |
-| Frontal | ![frontal](vistas_ortogonales/front.png) |
-| Superior | ![superior](vistas_ortogonales/top.png) |
-| Lateral derecha | ![lateral](vistas_ortogonales/right.png) |
+| Isométrica | Frontal | Superior | Lateral |
+|---|---|---|---|
+| ![iso](vistas_ortogonales/iso.png) | ![frontal](vistas_ortogonales/front.png) | ![superior](vistas_ortogonales/top.png) | ![lateral](vistas_ortogonales/right.png) |
 
-## Cotas principales (mm, tolerancia general ±0,2)
-
-| Elemento | Medida |
-|---|---|
-| Caja, planta | 100 × 60 (64 con rieles) |
-| Caja, altura con techo | ≈ 54 sobre la base, 46 sin techo |
-| Pared / piso | 2,5 / 3 |
-| Entradas de cables | 2 × (12 × 12) |
-| Ventana USB | 13 × 8 |
-| Techo | Una sola agua, 15°, alero de 45 |
-| Tubo 1 / 2 / 3 (Ø ext./int.) | 34/30 · 25,5/21,5 · 17,5/13,5 |
-| Agujeros de pasador | Ø 4,2 cada 20 |
-| Roscas | M36x2 (caja–tubo) · M10x1.5 (punta) |
-
-**POR COMPLETAR:** plano con cotas dibujadas sobre las vistas, escala y cajetín (entorno
-*Drawing* de Fusion 360), exportado a PDF en esta carpeta.
+Para imprimir las láminas: abrir el `.svg` en el navegador → Imprimir → Guardar como PDF.

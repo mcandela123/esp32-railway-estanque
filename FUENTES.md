@@ -70,7 +70,7 @@ Herramientas: Arduino IDE 2.3.10, Autodesk Fusion 360 (diseño 3D y PCB), Git y 
 |---|---|---|
 | ESP32 (Espressif) | ESP32 Series Datasheet | https://www.espressif.com/sites/default/files/documentation/esp32_datasheet_en.pdf |
 | ESP32 (Espressif) | Documentación del core Arduino-ESP32 | https://docs.espressif.com/projects/arduino-esp32/ |
-| Relé SRA-05VDC-CL (Songle), usado en la PCB | Datasheet del relé | **POR COMPLETAR** (enlace del datasheet del fabricante o distribuidor) |
+| Relé SRA-05VDC-CL (Ningbo Songle), usado en la PCB | Datasheet del relé (LCSC C99666). SPDT, bobina de 5 V y 42 Ω | https://datasheet.lcsc.com/szlcsc/Ningbo-Songle-Relay-SRA-05VDC-CL_C99666.pdf · ficha: https://www.lcsc.com/product-detail/C99666.html |
 | Flotador P35 | Ficha técnica del flotador | **POR COMPLETAR** (enlace del vendedor o ficha) |
 | Bomba de agua | Ficha técnica (tensión, potencia, caudal) | **POR COMPLETAR** |
 | Sensor de luz TEMT6000 (en la PCB) | Datasheet Vishay TEMT6000 | **POR COMPLETAR** (si se usa) |
