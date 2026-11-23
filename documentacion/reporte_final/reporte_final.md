@@ -23,7 +23,7 @@ Guardar como PDF (tamaño A4, sin encabezados).
 3. **Software:** captura de datos, control y comunicación en núcleos separados, API, dashboard y seguridad.
 4. **Hardware:** componentes justificados, conexiones, reparación y BOM ($12.000 CLP).
 5. **Diseño 3D:** 7 piezas de 10 cm o menos, techo de una sola agua con riel, tubo telescópico y planos.
-6. **Testing:** prueba de puesta en marcha (34 lecturas), modos de falla y pruebas formales pendientes.
+6. **Testing:** prueba de puesta en marcha (34 lecturas), modos de falla y protocolo de pruebas formales.
 7. **Iteraciones** y lecciones aprendidas.
 8. **Conclusiones** y trabajo futuro.
 9. **Referencias** y declaración de uso de IA.

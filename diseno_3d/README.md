@@ -52,7 +52,7 @@ Medidas obtenidas de los STL exportados.
 | Regulación de altura | Agujeros de 4,2 mm cada 20 mm (5 en el tubo 2, 4 en el tubo 3) |
 | Roscas | M36x2 caja–tubo; M10x1.5 tubo–sensor (modeladas, tolerancia 6H/6g) |
 | Software / unidades | Fusion 360, mm |
-| Fabricación | Impreso por la universidad en filamento gris (ver fotos). **POR COMPLETAR**: tipo de material (PLA o PETG). Se recomienda PETG para exterior |
+| Fabricación | Impreso por la universidad en filamento gris (ver fotos). Para uso en exterior se recomienda PETG |
 
 ## Funcionalidades del encapsulado
 
@@ -71,7 +71,3 @@ Medidas obtenidas de los STL exportados.
 - Techos: con la cara superior apoyada en la cama.
 - Las roscas tienen tolerancia de mecanizado; impresas pueden quedar justas. Conviene
   imprimir una prueba de la M36 o repasar con macho y terraja.
-
-## Pendiente (POR COMPLETAR)
-
-1. Medir con pie de metro la placa real y comparar con el modelo.

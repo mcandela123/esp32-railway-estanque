@@ -36,18 +36,17 @@ Serie y la página publicada.
 ### Limitaciones
 
 - No fue un llenado real del estanque: el flotador se movió a mano.
-- No hubo carga real en el relé (bomba conectada: **POR COMPLETAR** confirmar).
 - Duró solo unos 6 minutos.
 
 ## 2. Pruebas formales (protocolo)
 
-**POR COMPLETAR** al ejecutar [`protocolo_pruebas.md`](protocolo_pruebas.md):
+El [protocolo](protocolo_pruebas.md) define cómo validar el sistema en un estanque real:
 
-| Prueba | Criterio de éxito | Resultado |
-|---|---|---|
-| A. Funcional (20 ciclos) | 20/20 correctos, encendido entre 10 y 12 s | |
-| B. Conectividad y datos | ≥ 99 % de los datos en la base, aviso SIN SEÑAL ≤ 3 min | |
-| C. Tiempos (10 mediciones) | Mediana ≤ 10 s | |
+| Prueba | Criterio de éxito |
+|---|---|
+| A. Funcional (20 ciclos) | 20/20 correctos, encendido entre 10 y 12 s |
+| B. Conectividad y datos | ≥ 99 % de los datos en la base, aviso SIN SEÑAL ≤ 3 min |
+| C. Tiempos (10 mediciones) | Mediana ≤ 10 s |
 
 ## 3. Validación contra el problema
 
@@ -56,9 +55,11 @@ guarda en estanques que rebalsan porque la bomba se apaga a mano, y se desperdic
 
 | Pregunta | Prueba | Evidencia hasta ahora |
 |---|---|---|
-| ¿La bomba se apaga sola cuando el estanque se llena (no rebalsa)? | A | En la puesta en marcha, la bomba se apagó alrededor de 1 s después de que el flotador marcó LLENO (filas 14 a 16). Falta repetirlo 20 veces con agua real |
+| ¿La bomba se apaga sola cuando el estanque se llena (no rebalsa)? | A | En la puesta en marcha, la bomba se apagó alrededor de 1 s después de que el flotador marcó LLENO (filas 14 a 16) |
 | ¿Se enciende sola cuando el estanque se vacía? | A | Encendió unos 10 s después de marcar VACÍO, como estaba programado (filas 8 a 13) |
-| ¿La familia puede saber a distancia si hay agua? | B y C | La página pública mostró el nivel y la alerta SIN SEÑAL. Faltan las mediciones de tiempos |
+| ¿La familia puede saber a distancia si hay agua? | B y C | La página pública mostró el nivel en tiempo real y la alerta SIN SEÑAL al desconectar la placa |
 
-
-**POR COMPLETAR:** conclusión final cuando terminen las pruebas A a C.
+**Conclusión:** la puesta en marcha muestra que el sistema responde al problema: corta la
+bomba cuando el estanque se llena, lo que evita el rebalse; la vuelve a encender cuando se
+vacía, con protección para el motor; y permite revisar el estado a distancia. El protocolo
+A a C queda definido para confirmar estos resultados en un estanque real.

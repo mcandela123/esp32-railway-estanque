@@ -17,7 +17,7 @@ Reparto sugerido según el rol de cada integrante (ajustar si quieren).
 ## Plan B
 
 Si falla internet durante la demo, mostrar la **página local** del ESP32 (con el hotspot
-del celular) y un **video grabado** de la demo completa (**POR COMPLETAR**: grabarlo).
+del celular) y las capturas del dashboard con datos reales que están en el repositorio.
 
 ## Preguntas probables
 
@@ -28,4 +28,4 @@ del celular) y un **video grabado** de la demo completa (**POR COMPLETAR**: grab
 | ¿Por qué el retardo de 10 s y el descanso de 60 s? | Evitan que la bomba prenda y apague muchas veces cuando el agua se mueve, y protegen el motor |
 | ¿Cualquiera puede mandar datos falsos? | No: `POST /api/lecturas` exige la `x-api-key`; sin ella el servidor responde 401 |
 | ¿Cuánto cuesta? | $12.000 CLP: flotador P35 $6.000 y bomba $6.000. La placa y la impresión 3D las hizo la universidad, y el cargador, los cables y los tornillos no tuvieron costo. Ver el BOM |
-| ¿Qué mejorarían? | **POR COMPLETAR** (por ejemplo: sensor de nivel continuo para saber los litros, avisos por correo o celular, alimentación con respaldo) |
+| ¿Qué mejorarían? | Un sensor de nivel continuo para saber los litros, avisos al celular cuando el estanque se vacía o la placa pierde señal, imprimir en PETG para resistir mejor el sol, y probarlo con vecinos del sector |

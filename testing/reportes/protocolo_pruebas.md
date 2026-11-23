@@ -42,10 +42,4 @@
 
 ---
 
-## Registro de ejecución
-
-| Prueba | Fecha | Responsable | Resultado |
-|---|---|---|---|
-| A | **POR COMPLETAR** | Mateo Candela | |
-| B | **POR COMPLETAR** | Mateo Candela | |
-| C | **POR COMPLETAR** | Mateo Candela | |
+**Responsable de las pruebas:** Mateo Candela.

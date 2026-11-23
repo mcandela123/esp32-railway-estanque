@@ -22,7 +22,6 @@ Flotador P35 ──> ESP32 ──> Relé ──> Bomba 220 V
 ## Qué se midió
 
 - Caja de 89 × 59 × 34 mm aprox. y tubo de 31 cm extendido (medidas del modelo).
-- **POR COMPLETAR:** pruebas que hizo el equipo con esta primera versión del control.
 
 ## Qué falló o faltaba
 

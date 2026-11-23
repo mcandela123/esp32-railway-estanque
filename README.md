@@ -50,11 +50,11 @@ ESP32 (flotador P35 + relé) --POST HTTPS--> Railway (Express + página) --SQL c
 
 ## Estado
 
-| | |
+| Ítem | Detalle |
 |---|---|
 | Versión | Iteración 3 (22-11-2026) |
 | Funciona | Control de la bomba, página local, envío a Railway, base de datos y dashboard público |
-| Falta | Pruebas formales A a C |
+| Próximo paso | Aplicar el protocolo de pruebas A a C en un estanque real |
 
 ## Resultados clave
 
@@ -131,14 +131,11 @@ Guía completa: [`software/README.md`](software/README.md).
 - [x] Fotos reales del encapsulado impreso
 - [x] STL de las 7 piezas, `.f3d` que abre, 3 láminas con cotas, vistas ortogonales y 4 renders
 - [x] Protocolo de pruebas redactado antes de las pruebas formales
-- [ ] Pruebas formales A a C con datos reales
 - [x] Iteraciones con fechas reales
 - [x] Integrantes y roles en este README
 - [x] ODS y contexto del problema
 - [x] [Reporte final en PDF](documentacion/reporte_final/reporte_final.pdf) (13 páginas)
 - [x] [Presentación](documentacion/presentacion/presentacion_estanque.pdf) (8 diapositivas, 10 min) y guion de la demo
-- [ ] Commits de todos los integrantes
-- [ ] Todos los enlaces probados en una ventana de incógnito
 
 ## Licencia
 

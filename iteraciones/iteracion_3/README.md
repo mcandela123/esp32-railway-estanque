@@ -38,7 +38,7 @@ ESP32 (flotador P35 + relé) --POST HTTPS--> Railway (Express + página) --SQL c
 | Placa equivocada en el IDE (ESP32-C3 / S2) | Se documentó elegir **ESP32 Dev Module** |
 | Riesgo de subir la clave del WiFi a GitHub | El `.ino` publicado usa valores de ejemplo y se revisó el historial |
 
-## Pendiente
+## Próximos pasos
 
-- Pruebas formales del protocolo (A, B y C).
-- Indicadores de uso diario con datos de varios días.
+- Aplicar el protocolo de pruebas A, B y C en un estanque real.
+- Calcular indicadores de uso diario con datos de varios días.

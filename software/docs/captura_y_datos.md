@@ -105,5 +105,5 @@ A partir de [`lecturas_2026-11-22.csv`](../../testing/datos/lecturas_2026-11-22.
 
 Estos valores salen de una **prueba manual** en la que se movió el flotador con la mano,
 no de un llenado real del estanque. Los indicadores de uso diario (encendidos por día,
-minutos de bomba encendida por día, tiempo con el estanque vacío) se calcularán con datos
-de varios días de funcionamiento: **POR COMPLETAR**.
+minutos de bomba encendida por día, tiempo con el estanque vacío) se obtienen con las mismas
+consultas cuando el equipo funciona varios días seguidos.
