@@ -136,7 +136,7 @@ Guía completa: [`software/README.md`](software/README.md).
 - [x] Integrantes y roles en este README
 - [x] ODS y contexto del problema
 - [x] [Reporte final en PDF](documentacion/reporte_final/reporte_final.pdf) (13 páginas)
-- [ ] Presentación (10 min) en `documentacion/presentacion/`
+- [x] [Presentación](documentacion/presentacion/presentacion_estanque.pdf) (8 diapositivas, 10 min) y guion de la demo
 - [ ] Commits de todos los integrantes
 - [ ] Todos los enlaces probados en una ventana de incógnito
 
