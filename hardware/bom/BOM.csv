@@ -4,8 +4,9 @@ S1,Flotador P35,1,6000,6000,Detecta si el estanque esta lleno o vacio,Comprado p
 M1,Bomba de agua 220 V,1,6000,6000,Llena el estanque,Comprada por el equipo
 P1,Impresion 3D del encapsulado (7 piezas),1,0,0,Caja techo y tubo telescopico,Impresa por la universidad
 PS1,Cargador USB 5 V,1,0,0,Alimenta el ESP32 y el rele,Propio del equipo
-W1,Cable micro USB de datos,1,POR COMPLETAR,POR COMPLETAR,Alimentacion y programacion,POR COMPLETAR
-W2,Cables morado y verde,1,POR COMPLETAR,POR COMPLETAR,Senal del flotador,POR COMPLETAR
-W3,Cable amarillo 220 V,1,POR COMPLETAR,POR COMPLETAR,Rele - bomba,POR COMPLETAR
-H1,Tornillos M3,6,POR COMPLETAR,POR COMPLETAR,4 para la placa y 2 para unir los techos,POR COMPLETAR
-H2,Pasador de 4 mm,2,POR COMPLETAR,POR COMPLETAR,Fijar la altura del tubo telescopico,POR COMPLETAR
+W1,Cable micro USB de datos,1,0,0,Alimentacion y programacion,Sin costo para el equipo
+W2,Cables morado y verde,1,0,0,Senal del flotador,Sin costo para el equipo
+W3,Cable amarillo 220 V,1,0,0,Rele - bomba,Sin costo para el equipo
+H1,Tornillos M3,6,0,0,4 para la placa y 2 para unir los techos,Sin costo para el equipo
+H2,Pasador de 4 mm,2,0,0,Fijar la altura del tubo telescopico,Sin costo para el equipo
+,TOTAL,,,12000,,

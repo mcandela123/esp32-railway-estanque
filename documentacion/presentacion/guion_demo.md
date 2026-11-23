@@ -27,5 +27,5 @@ del celular) y un **video grabado** de la demo completa (**POR COMPLETAR**: grab
 | ¿Qué pasa si se cae el WiFi? | La bomba sigue funcionando porque el control depende solo del flotador. Los datos quedan en cola, la página muestra SIN SEÑAL y todo se recupera solo al volver el WiFi |
 | ¿Por qué el retardo de 10 s y el descanso de 60 s? | Evitan que la bomba prenda y apague muchas veces cuando el agua se mueve, y protegen el motor |
 | ¿Cualquiera puede mandar datos falsos? | No: `POST /api/lecturas` exige la `x-api-key`; sin ella el servidor responde 401 |
-| ¿Cuánto cuesta? | Unos $12.000 CLP: flotador P35 $6.000 y bomba $6.000. La placa y la impresión 3D las hizo la universidad y el cargador era nuestro. Ver el BOM |
+| ¿Cuánto cuesta? | $12.000 CLP: flotador P35 $6.000 y bomba $6.000. La placa y la impresión 3D las hizo la universidad, y el cargador, los cables y los tornillos no tuvieron costo. Ver el BOM |
 | ¿Qué mejorarían? | **POR COMPLETAR** (por ejemplo: sensor de nivel continuo para saber los litros, avisos por correo o celular, alimentación con respaldo) |
