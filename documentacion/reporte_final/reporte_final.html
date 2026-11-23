@@ -99,7 +99,7 @@
 <table>
   <tr><th>Dato</th><th>Valores</th><th>Origen</th></tr>
   <tr><td><code>nivel</code></td><td>1 = LLENO, 0 = VACÍO</td><td>Flotador P35 en GPIO 27 (pull-up interna)</td></tr>
-  <tr><td><code>bomba</code></td><td>1 = ENCENDIDA, 0 = APAGADA</td><td>Salida al relé (GPIO 26)</td></tr>
+  <tr><td><code>bomba</code></td><td>1 = ENCENDIDA, 0 = APAGADA</td><td>Salida al relé (GPIO 13)</td></tr>
   <tr><td><code>estado</code></td><td>0 Apagada · 1 Esperando arranque · 2 Encendida · 3 Esperando corte · 4 Descanso</td><td>Máquina de estados</td></tr>
 </table>
 <p>Los datos se envían <b>apenas cambian</b> y además <b>cada 60 s</b> como latido. El nivel de un estanque cambia en minutos, por lo que enviar más seguido solo llenaría la base de datos gratuita. Antes de decidir, el firmware filtra el flotador con un <b>antirrebote de 80 ms</b>, exige que marque vacío durante <b>10 s</b> antes de encender y deja un <b>descanso de 60 s</b> después de cada corte para proteger el motor. Tras un corte de luz, el equipo parte en descanso para que la bomba no arranque de golpe.</p>
@@ -139,7 +139,7 @@
 <table>
   <tr><th>Conexión</th><th>Pin / borne</th><th>Cable</th></tr>
   <tr><td>Flotador P35</td><td>GPIO 27 y GND</td><td>Morado y verde</td></tr>
-  <tr><td>Relé</td><td>VCC ← 5 V (VIN) · GND · IN ← GPIO 26 (activo en LOW)</td><td>—</td></tr>
+  <tr><td>Relé</td><td>VCC ← 5 V (VIN) · GND · IN ← GPIO 13 (activo en HIGH)</td><td>—</td></tr>
   <tr><td>Bomba</td><td>Fase → COM del relé · NO → fase de la bomba · neutro y tierra directos</td><td>Amarillo</td></tr>
 </table>
 <h3>4.3 Montaje, precauciones y reparación</h3>

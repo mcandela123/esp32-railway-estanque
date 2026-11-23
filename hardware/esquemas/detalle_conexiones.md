@@ -14,7 +14,7 @@ equipo: **morado y verde** para el flotador P35 y **amarillo** para la bomba.
 | Flotador P35, cable 2 | ESP32 GND | Verde o morado* | Referencia |
 | ESP32 VIN (5 V) | Relé VCC | Pista de la PCB | Alimentación de la bobina del relé |
 | ESP32 GND | Relé GND | Pista de la PCB | Referencia |
-| ESP32 GPIO 26 | Relé IN (vía transistor) | Pista de la PCB | Orden de encendido (activo en LOW) |
+| ESP32 GPIO 13 | Relé IN (vía transistor) | Pista de la PCB | Orden de encendido (activo en HIGH) |
 | ESP32 GPIO 2 | LED integrado | Pista de la PCB | Encendido = bomba funcionando |
 
 \* El flotador P35 es un contacto seco sin polaridad: da lo mismo cuál de los dos cables va
@@ -34,7 +34,7 @@ a GPIO 27 y cuál a GND.
 | Pin | Motivo |
 |---|---|
 | GPIO 27 (flotador) | Pin de entrada normal, con pull-up interna, que no interviene en el arranque del ESP32 |
-| GPIO 26 (relé) | Salida digital libre que no es pin de arranque (*strapping*), así el relé no se activa al encender |
+| GPIO 13 (relé) | Es el pin conectado al Relé 1 en la PCB de la universidad (el Relé 2 está en GPIO 15) |
 | GPIO 2 (LED) | LED integrado de la placa, sirve como indicador sin agregar piezas |
 
 ## PCB

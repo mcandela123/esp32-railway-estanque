@@ -46,7 +46,7 @@
  *  -------------------------
  *    Flotador P35, cable 1 -> GPIO 27
  *    Flotador P35, cable 2 -> GND      (usa la pull-up interna del ESP32)
- *    Relé VCC -> 5V (VIN) | Relé GND -> GND | Relé IN -> GPIO 26
+ *    Relé VCC -> 5V (VIN) | Relé GND -> GND | Relé 1 de la PCB -> GPIO 13 (Relé 2 = GPIO 15)
  *
  *  CONEXIONES (220V, SIEMPRE CON LA ENERGÍA CORTADA)
  *  -------------------------------------------------
@@ -126,11 +126,11 @@ const uint32_t DESCANSO_MINIMO_S  = 60;      // Segundos mínimos con la bomba a
 // ==========================================================================
 
 const uint8_t PIN_FLOTADOR = 27;   // Señal del flotador P35
-const uint8_t PIN_RELE     = 26;   // Pin IN del módulo relé
+const uint8_t PIN_RELE     = 13;   // Relé 1 de la placa UAI (Relé 2 = GPIO 15)
 const uint8_t PIN_LED      = 2;    // LED integrado: encendido = bomba funcionando
 
 // La mayoría de los módulos relé se activan con señal LOW.
-const bool RELE_ACTIVO_EN_BAJO = true;
+const bool RELE_ACTIVO_EN_BAJO = false;  // en la placa UAI el relé se activa con HIGH (transistor)
 
 // true  -> contacto cerrado = estanque VACÍO (flotador abajo)
 // false -> contacto cerrado = estanque LLENO (flotador arriba)

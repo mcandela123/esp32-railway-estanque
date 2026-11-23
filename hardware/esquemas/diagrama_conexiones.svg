@@ -19,7 +19,7 @@
   <text x="415" y="162" text-anchor="middle" font-size="12" fill="#66768a">ESP32 (confirmado por esptool)</text>
   <text x="312" y="200" font-size="14">USB / VIN 5V</text>
   <text x="312" y="250" font-size="14">GPIO 27  (entrada, pull-up)</text>
-  <text x="312" y="300" font-size="14">GPIO 26  (salida a relé)</text>
+  <text x="312" y="300" font-size="14">GPIO 13  (salida a relé)</text>
   <text x="312" y="340" font-size="14">GPIO 2   (LED integrado)</text>
   <text x="312" y="380" font-size="14">GND</text>
 
@@ -31,10 +31,10 @@
 
   <!-- Relé -->
   <rect x="560" y="430" width="250" height="140" rx="8" fill="#eafaf1" stroke="#1a9e5a" stroke-width="2"/>
-  <text x="685" y="460" text-anchor="middle" font-size="16" font-weight="bold">Módulo relé (activo en LOW)</text>
+  <text x="685" y="460" text-anchor="middle" font-size="16" font-weight="bold">Relé 1 de la PCB (activo en HIGH)</text>
   <text x="575" y="490" font-size="13">VCC ← 5V (VIN)</text>
   <text x="575" y="510" font-size="13">GND ← GND</text>
-  <text x="575" y="530" font-size="13">IN  ← GPIO 26</text>
+  <text x="575" y="530" font-size="13">IN  ← GPIO 13</text>
   <text x="720" y="500" font-size="13">COM</text>
   <text x="720" y="540" font-size="13">NO</text>
 

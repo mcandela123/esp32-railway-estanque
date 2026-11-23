@@ -7,7 +7,7 @@
 | Dato (`sensor`) | Valores | Origen |
 |---|---|---|
 | `nivel` | 1 = estanque LLENO, 0 = VACÍO | Flotador P35 conectado a GPIO 27 (con pull-up interna; contacto cerrado = VACÍO) |
-| `bomba` | 1 = ENCENDIDA, 0 = APAGADA | Salida que el ESP32 manda al relé (GPIO 26) |
+| `bomba` | 1 = ENCENDIDA, 0 = APAGADA | Salida que el ESP32 manda al relé (GPIO 13) |
 | `estado` | 0 APAGADA, 1 ESPERANDO ARRANQUE, 2 ENCENDIDA, 3 ESPERANDO CORTE, 4 DESCANSO | Máquina de estados del firmware |
 
 El flotador es un sensor **de contacto (todo o nada)**: no mide litros, indica si el agua
