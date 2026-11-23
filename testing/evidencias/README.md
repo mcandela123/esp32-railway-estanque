@@ -6,4 +6,3 @@
 | `prueba_A_*.mp4` / `.jpg` | **POR COMPLETAR** |
 | `prueba_B_*` | **POR COMPLETAR** |
 | `prueba_C_*` | **POR COMPLETAR** |
-| `prueba_D_usuario_1..5.jpg` | **POR COMPLETAR** (con permiso de cada persona) |

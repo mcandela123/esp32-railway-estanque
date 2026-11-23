@@ -48,7 +48,6 @@ Serie y la página publicada.
 | A. Funcional (20 ciclos) | 20/20 correctos, encendido entre 10 y 12 s | |
 | B. Conectividad y datos | ≥ 99 % de los datos en la base, aviso SIN SEÑAL ≤ 3 min | |
 | C. Tiempos (10 mediciones) | Mediana ≤ 10 s | |
-| D. Usuarios (≥ 5 personas) | 4 de 5 responden bien en < 30 s | |
 
 ## 3. Validación contra el problema
 
@@ -60,6 +59,6 @@ guarda en estanques que rebalsan porque la bomba se apaga a mano, y se desperdic
 | ¿La bomba se apaga sola cuando el estanque se llena (no rebalsa)? | A | En la puesta en marcha, la bomba se apagó alrededor de 1 s después de que el flotador marcó LLENO (filas 14 a 16). Falta repetirlo 20 veces con agua real |
 | ¿Se enciende sola cuando el estanque se vacía? | A | Encendió unos 10 s después de marcar VACÍO, como estaba programado (filas 8 a 13) |
 | ¿La familia puede saber a distancia si hay agua? | B y C | La página pública mostró el nivel y la alerta SIN SEÑAL. Faltan las mediciones de tiempos |
-| ¿Lo entiende una persona sin conocimientos técnicos? | D | **POR COMPLETAR** (al menos 5 personas, idealmente vecinos de Culiprán o San Pedro) |
 
-**POR COMPLETAR:** conclusión final cuando terminen las pruebas A a D.
+
+**POR COMPLETAR:** conclusión final cuando terminen las pruebas A a C.

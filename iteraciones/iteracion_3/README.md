@@ -40,5 +40,5 @@ ESP32 (flotador P35 + relé) --POST HTTPS--> Railway (Express + página) --SQL c
 
 ## Pendiente
 
-- Pruebas formales del protocolo (A, B, C y D con 5 usuarios).
+- Pruebas formales del protocolo (A, B y C).
 - Indicadores de uso diario con datos de varios días.

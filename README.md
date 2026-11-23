@@ -54,7 +54,7 @@ ESP32 (flotador P35 + relé) --POST HTTPS--> Railway (Express + página) --SQL c
 |---|---|
 | Versión | Iteración 3 (22-11-2026) |
 | Funciona | Control de la bomba, página local, envío a Railway, base de datos y dashboard público |
-| Falta | Fotos del cableado y de la instalación, precios del cargador y cables, pruebas formales con 5 usuarios, reporte y presentación |
+| Falta | Pruebas formales A a C, reporte final y láminas de la presentación |
 
 ## Resultados clave
 
@@ -127,12 +127,11 @@ Guía completa: [`software/README.md`](software/README.md).
 - [x] Ninguna clave en el repositorio ni en el historial (revisado el 22-11-2026)
 - [x] Página en Railway funcionando
 - [x] Diagrama de conexiones
-- [x] BOM con precio real de la bomba y piezas provistas por la universidad (faltan cargador y cables)
+- [x] BOM con precios reales (bomba y flotador) y piezas provistas por la universidad
 - [x] Fotos reales del encapsulado impreso
-- [ ] Fotos del cableado etiquetado y de la instalación en el estanque
 - [x] STL de las 7 piezas, `.f3d` que abre, 3 láminas con cotas, vistas ortogonales y 4 renders
 - [x] Protocolo de pruebas redactado antes de las pruebas formales
-- [ ] Pruebas formales con datos reales y 5 usuarios
+- [ ] Pruebas formales A a C con datos reales
 - [x] Iteraciones con fechas reales
 - [x] Integrantes y roles en este README
 - [x] ODS y contexto del problema

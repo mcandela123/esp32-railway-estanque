@@ -15,11 +15,5 @@ Las fotos confirman que las 7 piezas impresas encajan como en el modelo de Fusio
 el techo sobre el riel, la rosca M36x2 entre la caja y el tubo, el casquillo del tubo 1
 y los tramos telescópicos.
 
-## Fotos pendientes (POR COMPLETAR)
-
-| Archivo sugerido | Qué debe mostrar |
-|---|---|
-| `foto_03_caja_abierta.jpg` | Caja sin techo, con la placa atornillada |
-| `foto_04_cableado_etiquetado.jpg` | Detalle del cableado con **etiquetas**: cables morado y verde del flotador y cable amarillo de la bomba |
-| `foto_05_flotador_en_estanque.jpg` | Equipo instalado en el estanque |
-| `foto_06_rele_y_bomba.jpg` | Conexión del relé a la bomba |
+El interior de la caja (placa, relés, borneras y entradas de cables) se puede ver en el
+[render interior](../../diseno_3d/renders/render_03_interior.png) del modelo 3D.

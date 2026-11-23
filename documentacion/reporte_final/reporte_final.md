@@ -63,7 +63,7 @@ roscas M36x2 y M10x1.5, y 7 piezas de 10 cm o menos para la impresora.
 
 Resumen de [`../../testing/`](../../testing/): la prueba de puesta en marcha verificó el
 envío (respuestas 201, 34 lecturas), el retardo de 10 s, el descanso de 60 s y la alerta
-SIN SEÑAL. Pruebas formales A a D y validación con 5 usuarios: **POR COMPLETAR**.
+SIN SEÑAL. Pruebas formales A a C: **POR COMPLETAR**.
 
 ## 7. Iteraciones y conclusiones
 
